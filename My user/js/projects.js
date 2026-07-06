@@ -121,7 +121,7 @@ me convert karega.
 ---------------------------------------------------------------
 */
 
-function displayProjects(){
+function displayProjects(projectList){
 
 
     /*
@@ -149,7 +149,7 @@ function displayProjects(){
     -----------------------------------------------------------
     */
 
-    projects.forEach((project)=>{
+    projectList.forEach((project)=>{
 
 
         /*
@@ -219,7 +219,47 @@ function displayProjects(){
             </div>
 
         `;
+            /* ===========================================
+        CARD CLICK EVENT
+=========================================== */
 
+card.addEventListener("click", () => {
+
+    modal.classList.add("show");
+
+    modalContent.innerHTML = `
+
+        <h2>${project.title}</h2>
+
+        <p>${project.description}</p>
+
+        <p>
+
+            <strong>Category :</strong>
+
+            ${project.category}
+
+        </p>
+
+        <div class="modal-buttons">
+
+            <a href="${project.demo}" target="_blank">
+
+                Live Demo
+
+            </a>
+
+            <a href="${project.github}" target="_blank">
+
+                GitHub
+
+            </a>
+
+        </div>
+
+    `;
+
+});
 
         /*
         -------------------------------------------------------
@@ -235,7 +275,6 @@ function displayProjects(){
 
 }
 
-
 /*
 ---------------------------------------------------------------
 
@@ -248,4 +287,210 @@ Function Call
 ---------------------------------------------------------------
 */
 
-displayProjects();
+displayProjects(projects);
+/* ===============================================
+            MODAL ELEMENTS
+=============================================== */
+
+const modal = document.querySelector("#project-modal");
+
+const modalContent = document.querySelector("#modal-content");
+
+const closeModal = document.querySelector("#close-modal");
+/* =======================================================
+                FILTER BUTTONS
+======================================================= */
+
+/*
+----------------------------------------------------------
+
+Saare Filter Buttons
+
+NodeList
+
+Return karega.
+
+----------------------------------------------------------
+*/
+
+const filterButtons = document.querySelectorAll(".filter-btn");
+/*
+---------------------------------------------------------
+
+Saare Buttons par loop.
+
+---------------------------------------------------------
+*/
+
+filterButtons.forEach((button)=>{
+
+    /*
+    ------------------------------------------------------
+
+    Click Event
+
+    ------------------------------------------------------
+    */
+
+    button.addEventListener("click",()=>{
+
+        /*
+        -----------------------------------------------
+
+        Filter Name
+
+        Example
+
+        html
+
+        css
+
+        javascript
+
+        firebase
+
+        -----------------------------------------------
+        */
+
+        const category = button.dataset.filter;
+        /*
+===================================================
+
+Sab buttons se
+
+active
+
+remove.
+
+===================================================
+*/
+
+filterButtons.forEach((btn)=>{
+
+    btn.classList.remove("active");
+
+});
+
+
+/*
+===================================================
+
+Jis button par click hua
+
+usi par active.
+
+===================================================
+*/
+
+button.classList.add("active");
+        /*
+-------------------------------------------------------
+
+Agar
+
+All
+
+button hai.
+
+-------------------------------------------------------
+*/
+
+if(category==="all"){
+
+    displayProjects(projects);
+
+}
+/*
+-------------------------------------------------------
+
+filter()
+
+Sirf matching data return karega.
+
+-------------------------------------------------------
+*/
+
+const filteredProjects = projects.filter((project)=>{
+
+    return project.category===category;
+
+});
+
+    });
+
+});
+
+
+
+/* ============================================
+            LIVE SEARCH
+============================================ */
+
+/*
+Search Input Select
+*/
+
+const searchInput = document.querySelector("#search-input");
+
+/*
+Input Event
+
+Har baar user kuch type karega
+ye event chalega.
+*/
+
+searchInput.addEventListener("input", () => {
+
+    /*
+    User ne jo text likha.
+    */
+
+    const searchText = searchInput.value.toLowerCase();
+
+    /*
+    Filter array.
+    */
+
+    const result = projects.filter((project)=>{
+
+        /*
+        Project Name
+
+        Lowercase
+
+        taki
+
+        Weather
+
+        aur
+
+        weather
+
+        dono same ho.
+
+        */
+
+        return project.title
+        .toLowerCase()
+        .includes(searchText);
+
+    });
+
+    /*
+    Screen Update.
+    */
+
+    displayProjects(result);
+
+});
+
+
+/* ===========================================
+            CLOSE MODAL
+=========================================== */
+
+closeModal.addEventListener("click", () => {
+
+    modal.classList.remove("show");
+
+});

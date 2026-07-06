@@ -148,58 +148,44 @@
     </div>
 
 </section>
-                <!-- projects -->
+                        <!-- projects -->
                  <section class="projects" id="projects">
 
-    <h2 class="section-title">
+                    <h2 class="section-title">
+                        My Projects
+                    </h2>
 
-        My Projects
+                    <div class="search-box">
+                    <input type="text"id="search-input"placeholder="Search Projects..."></div>
 
-    </h2>
+                        <!-- Filter Buttons -->
 
-    <!-- Filter Buttons -->
+                    <div class="filter-buttons">
+                        <button class="filter-btn active" data-filter="all">All</button>
+                        <button class="filter-btn" data-filter="html">HTML</button>
+                        <button class="filter-btn" data-filter="css">CSS</button>
+                        <button class="filter-btn" data-filter="javascript">JavaScript</button>
+                        <button class="filter-btn" data-filter="firebase">Firebase</button>
+                    </div>
 
-    <div class="filter-buttons">
+                            <!-- Cards -->
 
-        <button class="filter-btn active" data-filter="all">
+                    <div class="project-container">
 
-            All
+                    </div>
 
-        </button>
+                </section>
 
-        <button class="filter-btn" data-filter="html">
-
-            HTML
-
-        </button>
-
-        <button class="filter-btn" data-filter="css">
-
-            CSS
-
-        </button>
-
-        <button class="filter-btn" data-filter="javascript">
-
-            JavaScript
-
-        </button>
-
-        <button class="filter-btn" data-filter="firebase">
-
-            Firebase
-
-        </button>
-
-    </div>
-
-    <!-- Cards -->
-
-    <div class="project-container">
-
-    </div>
-
-</section>
+                <!-- ===================================================
+                    PROJECT MODAL
+                    =================================================== -->
+                <div class="project-modal" id="project-modal">
+                    <div class="modal-box">
+                        <button class="close-btn" id="close-modal">✖</button>
+                        <div id="modal-content">
+                        </div>
+                    </div>
+                </div>
                 
                         <!-- 2 -->
         <section id="projects" style="height:100vh;"></section>
