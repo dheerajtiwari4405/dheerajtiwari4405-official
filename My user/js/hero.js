@@ -210,3 +210,339 @@ typing animation start.
 -----------------------------------------------
 */
 typeEffect();
+/* ============================================
+        DYNAMIC GREETING
+============================================ */
+
+/*
+----------------------------------------------
+Greeting wale paragraph ko select kar rahe hain.
+
+HTML:
+
+<p id="greeting"></p>
+
+----------------------------------------------
+*/
+const greeting = document.querySelector("#greeting");
+
+/*
+----------------------------------------------
+Current Date object.
+
+Isme current date aur time dono hote hain.
+
+Example
+
+Mon Jul 06 2026 09:15
+
+----------------------------------------------
+*/
+const currentDate = new Date();
+
+/*
+----------------------------------------------
+Sirf current hour nikal rahe hain.
+
+Range:
+
+0
+
+se
+
+23
+
+Tak
+
+Example
+
+9
+
+14
+
+20
+
+----------------------------------------------
+*/
+const currentHour = currentDate.getHours();
+
+/*
+----------------------------------------------
+Greeting set karne wala function.
+
+----------------------------------------------
+*/
+function updateGreeting(){
+
+    /*
+    Morning
+
+    5
+
+    se
+
+    11
+
+    */
+    if(currentHour >=5 && currentHour <12){
+
+        greeting.textContent="☀️ Good Morning, I'm";
+
+    }
+
+    /*
+    Afternoon
+
+    12
+
+    se
+
+    4
+
+    */
+    else if(currentHour >=12 && currentHour <17){
+
+        greeting.textContent="🌤 Good Afternoon, I'm";
+
+    }
+
+    /*
+    Evening
+
+    Baaki sab
+
+    */
+    else{
+
+        greeting.textContent="🌙 Good Evening, I'm";
+
+    }
+
+}
+
+/*
+----------------------------------------------
+Function Call
+
+Website load hote hi greeting set.
+
+----------------------------------------------
+*/
+updateGreeting();
+
+/* =========================================================
+            HERO BUTTON EVENTS
+========================================================= */
+
+/*
+----------------------------------------------------------
+Project Button ko select kar rahe hain.
+
+HTML
+
+<button id="project-btn">
+
+----------------------------------------------------------
+*/
+const projectBtn = document.querySelector("#project-btn");
+
+/*
+----------------------------------------------------------
+Contact Button ko select kar rahe hain.
+
+HTML
+
+<button id="contact-btn">
+
+----------------------------------------------------------
+*/
+const contactBtn = document.querySelector("#contact-btn");
+
+/*
+----------------------------------------------------------
+Projects Section select kar rahe hain.
+
+HTML
+
+<section id="projects">
+
+----------------------------------------------------------
+*/
+const projectSection = document.querySelector("#projects");
+
+/*
+----------------------------------------------------------
+Contact Section select kar rahe hain.
+
+HTML
+
+<section id="contact">
+
+----------------------------------------------------------
+*/
+const contactSection = document.querySelector("#contact");
+
+/*
+----------------------------------------------------------
+Project Button Click Event
+
+Jab user button click karega
+
+Projects section tak smooth scroll hoga.
+
+----------------------------------------------------------
+*/
+projectBtn.addEventListener("click", () => {
+
+    projectSection.scrollIntoView({
+
+        behavior: "smooth",
+
+        block: "start"
+
+    });
+
+});
+
+/*
+----------------------------------------------------------
+Contact Button Click Event
+
+----------------------------------------------------------
+*/
+contactBtn.addEventListener("click", () => {
+
+    contactSection.scrollIntoView({
+
+        behavior: "smooth",
+
+        block: "start"
+
+    });
+
+});
+
+/* ============================================================
+                MOUSE GLOW EFFECT
+============================================================ */
+
+/*
+--------------------------------------------------------------
+STEP 1
+
+Mouse Glow Element Select
+
+HTML
+
+<div class="mouse-glow"></div>
+
+Ye element mouse ke sath move karega.
+--------------------------------------------------------------
+*/
+const mouseGlow = document.querySelector(".mouse-glow");
+
+/*
+--------------------------------------------------------------
+STEP 2
+
+Mouse Move Event
+
+Jab bhi mouse move hoga
+
+Ye event baar baar chalega.
+
+Mouse ki position browser hume de deta hai.
+
+--------------------------------------------------------------
+*/
+window.addEventListener("mousemove",(event)=>{
+
+    /*
+    ----------------------------------------------------------
+
+    Mouse ki X Position
+
+    Example
+
+    350px
+
+    ----------------------------------------------------------
+    */
+    const mouseX = event.clientX;
+
+    /*
+    ----------------------------------------------------------
+
+    Mouse ki Y Position
+
+    Example
+
+    500px
+
+    ----------------------------------------------------------
+    */
+    const mouseY = event.clientY;
+
+    /*
+    ----------------------------------------------------------
+
+    Glow ko wahi shift kar rahe hain
+
+    left
+
+    top
+
+    CSS Position update hogi.
+
+    ----------------------------------------------------------
+    */
+
+    mouseGlow.style.left = mouseX + "px";
+
+    mouseGlow.style.top = mouseY + "px";
+
+});
+/* =====================================================
+                WEBSITE PRELOADER
+===================================================== */
+
+/*
+-------------------------------------------------------
+STEP 1
+
+Loader ko select kar rahe hain.
+
+-------------------------------------------------------
+*/
+const loader = document.querySelector("#loader");
+
+/*
+-------------------------------------------------------
+STEP 2
+
+Window ke completely load hone ka wait.
+
+Is event ke baad images, CSS, JS sab load ho chuke hote hain.
+
+-------------------------------------------------------
+*/
+window.addEventListener("load", () => {
+
+    /*
+    ---------------------------------------------------
+    Demo ke liye 2 second wait kar rahe hain.
+
+    Real project me fixed delay nahi rakhenge.
+    Hum actual loading complete hone par hi loader hataenge.
+    ---------------------------------------------------
+    */
+    setTimeout(() => {
+
+        /*
+        Loader hide karne wali class add.
+        */
+        loader.classList.add("hide-loader");
+
+    }, 2000);
+
+});

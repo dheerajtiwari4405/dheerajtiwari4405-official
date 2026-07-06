@@ -9,34 +9,60 @@
         <link rel="stylesheet" href="userStyle.css">                         
     </head>
     <body>
-        <header class="header">
+                 <!-- =========================================
+        WEBSITE PRELOADER
+========================================= -->
 
-    <nav class="navbar">
+<div class="loader" id="loader">
 
-        <div class="logo">
-            Dheeraj
+    <div class="loader-content">
+
+        <h1>Dheeraj Official</h1>
+
+        <div class="loader-bar">
+
+            <div class="loader-progress"></div>
+
         </div>
 
-        <ul class="nav-links" id="nav-links">
-            <li><a href="#home">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#skills">Skills</a></li>
-            <li><a href="#projects">Projects</a></li>
-            <li><a href="#blog">Blog</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
+        <p>Loading...</p>
 
-        <button class="menu-btn" id="menu-btn">
-            ☰
-        </button>
+    </div>
 
-    </nav>
+</div>
 
-</header>
+        <!-- mouse glowing -->
+         <div class="mouse-glow"></div>
+    <header class="header">
+
+        <nav class="navbar">
+
+            <div class="logo">
+            Dheeraj
+            </div>
+
+            <ul class="nav-links" id="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#blog">Blog</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+
+            <button class="menu-btn" id="menu-btn">
+                ☰
+            </button>
+
+        </nav>
+
+    </header>
                             <!-- Hero Section -->
         <section  class="hero" id="home">
             <div class="hero-content">
-                    <p class="hero">Hello, I'm</p>
+                    <p class="hello" id="greeting">
+                         👋 Hello, I'm
+                    </p>
                     <h1>Dheeraj Tiwari</h1>
                     <h2 class="typing-text">
                     <span id="typing-role"></span>
@@ -44,11 +70,21 @@
                     </h2>
                     <p class="description">Building modern websites and web applications while learning new technologes every day </p>
                     <div class="buttons">
-                        <button class="primary-btn">View Projects</button>
-                        <button class="secondary-btn">Contect Me</button>
+                        <button class="primary-btn" id="project-btn">View Projects</button>
+                        <button class="secondary-btn" id="contact-btn">Contact Me</button>
                     </div>
             </div>
         </section>
+                        <!-- 2 -->
+        <section id="projects" style="height:100vh;"></section>
+
+        <section id="contact" style="height:100vh;"></section>
+
+
+
+
+
+
 
         <script src="js/navbar.js"></script>
 

@@ -1,38 +1,27 @@
 /* ===========================
    GOOGLE FONT
 =========================== */
-
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
-
 /* ===========================
    RESET
 =========================== */
-
 *{
     margin:0;
     padding:0;
     box-sizing:border-box;
     font-family:'Poppins',sans-serif;
 }
-
 /* ===========================
    BODY
 =========================== */
-
 body{
-
     background:#0F172A;
-
     color:white;
-
     overflow-x:hidden;
-
 }
-
 /* ===========================
    HERO SECTION
 =========================== */
-
 .hero{
     min-height:100vh;
     display:flex;
@@ -373,5 +362,137 @@ button{
         opacity:0;
 
     }
+
+}
+/* ====================================================
+                MOUSE GLOW
+==================================================== */
+
+.mouse-glow{
+
+    position:fixed;
+
+    width:300px;
+
+    height:300px;
+
+    background:radial-gradient(circle,#3B82F6 0%,transparent 70%);
+
+    border-radius:50%;
+
+    pointer-events:none;
+
+    filter:blur(80px);
+
+    opacity:.35;
+
+    z-index:-1;
+
+    transform:translate(-50%,-50%);
+
+    transition:transform .08s linear;
+
+}
+/* =========================================
+                PRELOADER
+========================================= */
+
+.loader{
+
+    position:fixed;
+
+    inset:0;
+
+    background:#0F172A;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    z-index:99999;
+
+    transition:.6s;
+
+}
+
+.loader-content{
+
+    text-align:center;
+
+}
+
+.loader-content h1{
+
+    color:white;
+
+    margin-bottom:25px;
+
+    font-size:45px;
+
+}
+
+.loader-content p{
+
+    color:#CBD5E1;
+
+    margin-top:15px;
+
+}
+
+/* Loading Bar */
+
+.loader-bar{
+
+    width:320px;
+
+    height:8px;
+
+    background:#1E293B;
+
+    border-radius:50px;
+
+    overflow:hidden;
+
+}
+
+/* Progress */
+
+.loader-progress{
+
+    width:0;
+
+    height:100%;
+
+    background:linear-gradient(90deg,#3B82F6,#06B6D4);
+
+    animation:loading 2s linear forwards;
+
+}
+
+@keyframes loading{
+
+    from{
+
+        width:0;
+
+    }
+
+    to{
+
+        width:100%;
+
+    }
+
+}
+
+/* Hide Loader */
+
+.hide-loader{
+
+    opacity:0;
+
+    visibility:hidden;
 
 }
