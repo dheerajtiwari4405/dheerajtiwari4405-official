@@ -9,176 +9,116 @@
         <link rel="stylesheet" href="userStyle.css">                         
     </head>
     <body>
-                    <!-- =========================================
-                            WEBSITE PRELOADER
-                    ========================================= -->
-
+                    <!-- =======WEBSITE PRELOADER===== -->
         <div class="loader" id="loader">
-
             <div class="loader-content">
-
                 <h1>Dheeraj Official</h1>
-
                 <div class="loader-bar">
-
                     <div class="loader-progress"></div>
-
                 </div>
-
                 <p>Loading...</p>
-
             </div>
-
         </div>
 
         <!-- mouse glowing -->
-         <div class="mouse-glow"></div>
-    <header class="header">
+        <div class="mouse-glow">
 
-        <nav class="navbar">
+        </div>
+        <!-------- Navbar --------->
+        <header class="header">
+            <nav class="navbar">
+                <div class="logo">Dheeraj</div>
+                <ul class="nav-links" id="nav-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#skills">Skills</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#blog">Blog</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+                <button class="menu-btn" id="menu-btn">☰</button>
+            </nav>
+        </header>
 
-            <div class="logo">
-            Dheeraj
-            </div>
-
-            <ul class="nav-links" id="nav-links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#blog">Blog</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-
-            <button class="menu-btn" id="menu-btn">
-                ☰
-            </button>
-
-        </nav>
-
-    </header>
-                            <!-- Hero Section -->
+                <!-- Hero Section -->
         <section  class="hero" id="home">
             <div class="hero-content">
-                    <p class="hello" id="greeting">
-                         👋 Hello, I'm
-                    </p>
-                    <h1>Dheeraj Tiwari</h1>
-                    <h2 class="typing-text">
-                    <span id="typing-role"></span>
-                    <span class="cursor">|</span>
-                    </h2>
-                    <p class="description">Building modern websites and web applications while learning new technologes every day </p>
-                    <div class="buttons">
-                        <button class="primary-btn" id="project-btn">View Projects</button>
-                        <button class="secondary-btn" id="contact-btn">Contact Me</button>
-                    </div>
+                <p class="hello" id="greeting"> 👋 Hello, I'm </p>
+                <h1>Dheeraj Tiwari</h1>
+                <h2 class="typing-text">
+                <span id="typing-role"></span>
+                <span class="cursor">|</span>
+                </h2>
+                <p class="description">Building modern websites and web applications while learning new technologes every day </p>
+                <div class="buttons">
+                    <button class="primary-btn" id="project-btn">View Projects</button>
+                    <button class="secondary-btn" id="contact-btn">Contact Me</button>
+                </div>
             </div>
         </section>
 
-                        <!--   aboutsection          -->
-
+                        <!----- about,section------->
         <section class="about" id="about">
+            <div class="about-container">
 
-    <div class="about-container">
+                    <!-- Left Side -->
+                <div class="about-image">
+                    <img src="assets/images/profile.png" alt="Dheeraj Tiwari">
+                </div>
 
-        <!-- Left Side -->
-        <div class="about-image">
-
-            <img src="assets/images/profile.png" alt="Dheeraj Tiwari">
-
-        </div>
-
-        <!-- Right Side -->
-        <div class="about-content">
-
-            <h2>About Me</h2>
-
-            <p>
-                Hello! I'm Dheeraj Tiwari. I love building modern websites,
-                learning JavaScript deeply, and creating real-world web
-                applications with clean and professional code.
-            </p>
-            <div class="about-stats">
-
-                <div class="stat-box">
-
-                <h3 class="counter" data-target="25">0</h3>
-
-            <p>Projects</p>
-
-            </div>
-
-            <div class="stat-box">
-
-                <h3 class="counter" data-target="50">0</h3>
-
-                <p>JavaScript Projects</p>
-
-            </div>
-
-            <div class="stat-box">
-
-                <h3 class="counter" data-target="365">0</h3>
-
-                <p>Learning Days</p>
-
-            </div>
-
-            <div class="stat-box">
-
-                <h3 class="counter" data-target="12">0</h3>
-
-            <p>Certificates</p>
-
-        </div>
-
-    </div>
-
-            <div class="about-buttons">
-
-                <button class="primary-btn">
-                    Download Resume
-                </button>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-                        <!-- projects -->
-                 <section class="projects" id="projects">
-
-                    <h2 class="section-title">
-                        My Projects
-                    </h2>
-
-                    <div class="search-box">
-                    <input type="text"id="search-input"placeholder="Search Projects..."></div>
-
-                        <!-- Filter Buttons -->
-
-                    <div class="filter-buttons">
-                        <button class="filter-btn active" data-filter="all">All</button>
-                        <button class="filter-btn" data-filter="html">HTML</button>
-                        <button class="filter-btn" data-filter="css">CSS</button>
-                        <button class="filter-btn" data-filter="javascript">JavaScript</button>
-                        <button class="filter-btn" data-filter="firebase">Firebase</button>
+                    <!-- Right Side -->
+                <div class="about-content">
+                    <h2>About Me</h2>
+                    <p>
+                        Hello! I'm Dheeraj Tiwari. I love building modern websites,
+                        learning JavaScript deeply, and creating real-world web
+                        applications with clean and professional code.
+                    </p>
+                    <div class="about-stats">
+                        <div class="stat-box">
+                        <h3 class="counter" data-target="25">0</h3>
+                        <p>Projects</p>
                     </div>
+                    <div class="stat-box">
+                        <h3 class="counter" data-target="50">0</h3>
+                        <p>JavaScript Projects</p>
+                    </div>
+                    <div class="stat-box">
+                        <h3 class="counter" data-target="365">0</h3>
+                        <p>Learning Days</p>
+                    </div>
+                    <div class="stat-box">
+                        <h3 class="counter" data-target="12">0</h3>
+                        <p>Certificates</p>
+                    </div>
+                </div>
+                <div class="about-buttons">
+                    <button class="primary-btn">Download Resume</button>
+                </div>
+                </div>
+            </div>
+        </section>
+                        <!-- projects -->
+        <section class="projects" id="projects">
+            <h2 class="section-title"> My Projects</h2>
+            <div class="search-box"><input type="text"id="search-input"placeholder="Search Projects..."></div>
+
+                     <!-- Filter Buttons -->
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="html">HTML</button>
+                <button class="filter-btn" data-filter="css">CSS</button>
+                <button class="filter-btn" data-filter="javascript">JavaScript</button>
+                <button class="filter-btn" data-filter="firebase">Firebase</button>
+            </div>
 
                             <!-- Cards -->
+            <div class="project-container">
 
-                    <div class="project-container">
+            </div>   
+        </section>
 
-                    </div>
-
-                </section>
-
-                <!-- ===================================================
-                    PROJECT MODAL
-                    =================================================== -->
+                <!-- ========PROJECT MODEL========= -->
                 <div class="project-modal" id="project-modal">
                     <div class="modal-box">
                         <button class="close-btn" id="close-modal">✖</button>
@@ -192,12 +132,7 @@
 
         <section id="contact" style="height:100vh;"></section>
 
-
-
-
-
-
-
+                        <!-- JAVASCRIPT LINK -->
         <script src="js/navbar.js"></script>
 
         <script src="js/hero.js"></script>
