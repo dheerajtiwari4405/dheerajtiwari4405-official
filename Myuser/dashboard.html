@@ -1,62 +1,390 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
+    <!-- Character Encoding -->
     <meta charset="UTF-8">
+
+    <!-- Responsive Website -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
-    <link rel="stylesheet" href="css/styledashboard.css">
+
+    <!-- Page Title -->
+    <title>Admin Dashboard | Dheeraj Official</title>
+
+    <!-- Dashboard CSS -->
+    <link rel="stylesheet" href="css/dashboard.css">
+
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
 </head>
+
 <body>
 
-<button id="logout-btn">
-    Logout
-</button>
-<h1 id="welcome-text">
-    Welcome
-</h1>
-<h2>Add Project</h2>
+<!-- =====================================
+            SIDEBAR START
+===================================== -->
 
-<form id="project-form" class="project-form">
+<aside class="sidebar">
 
-<input
-type="text"
-id="project-title"
-placeholder="Project Title">
+    <!-- Logo -->
 
-<input
-type="text"
-id="project-category"
-placeholder="Category">
+    <div class="logo">
 
-<textarea
-id="project-description"
-placeholder="Description">
-</textarea>
+        <img src="assets/logo/logo.png" alt="Logo">
 
-<input
-type="text"
-id="github-link"
-placeholder="GitHub Link">
+        <h2>Dheeraj</h2>
 
-<input
-type="text"
-id="live-link"
-placeholder="Live Link">
+    </div>
 
-<button>
+    <!-- Navigation -->
 
-Add Project
+    <nav>
 
-</button>
+        <ul>
 
-</form>
+            <li class="active">
+
+                <a href="#dashboard">
+
+                    <i class="fa-solid fa-house"></i>
+
+                    Dashboard
+
+                </a>
+
+            </li>
+
+            <li>
+
+                <a href="#projects">
+
+                    <i class="fa-solid fa-folder"></i>
+
+                    Projects
+
+                </a>
+
+            </li>
+
+            <li>
+
+                <a href="#messages">
+
+                    <i class="fa-solid fa-envelope"></i>
+
+                    Messages
+
+                </a>
+
+            </li>
+
+            <li>
+
+                <a href="#skills">
+
+                    <i class="fa-solid fa-code"></i>
+
+                    Skills
+
+                </a>
+
+            </li>
+
+            <li>
+
+                <a href="#about">
+
+                    <i class="fa-solid fa-user"></i>
+
+                    About
+
+                </a>
+
+            </li>
+
+            <li>
+
+                <a href="#settings">
+
+                    <i class="fa-solid fa-gear"></i>
+
+                    Settings
+
+                </a>
+
+            </li>
+
+        </ul>
+
+    </nav>
+
+</aside>
+
+<!-- =====================================
+            SIDEBAR END
+===================================== -->
+
+
+
+
+
+<!-- =====================================
+            MAIN CONTENT START
+===================================== -->
+
+<main class="main-content">
+
+    <!-- Header -->
+
+    <header class="header">
+
+        <button id="menu-btn">
+
+            <i class="fa-solid fa-bars"></i>
+
+        </button>
+
+        <h1>
+
+            Admin Dashboard
+
+        </h1>
+
+        <div class="header-right">
+
+            <button id="theme-btn">
+
+                🌙
+
+            </button>
+
+            <button id="logout-btn">
+
+                Logout
+
+            </button>
+
+        </div>
+
+    </header>
+
+
+
+    <!-- ==========================
+            DASHBOARD SECTION
+    =========================== -->
+
+    <section id="dashboard">
+
+        <h2>
+
+            Dashboard Overview
+
+        </h2>
+
+        <!-- Dashboard Cards -->
+
+        <div class="cards">
+
+            <div class="card">
+
+                <i class="fa-solid fa-folder"></i>
+
+                <h3>Total Projects</h3>
+
+                <p id="total-projects">
+
+                    0
+
+                </p>
+
+            </div>
+
+            <div class="card">
+
+                <i class="fa-solid fa-envelope"></i>
+
+                <h3>Total Messages</h3>
+
+                <p id="total-messages">
+
+                    0
+
+                </p>
+
+            </div>
+
+            <div class="card">
+
+                <i class="fa-solid fa-eye"></i>
+
+                <h3>Total Visitors</h3>
+
+                <p id="total-visitors">
+
+                    0
+
+                </p>
+
+            </div>
+
+            <div class="card">
+
+                <i class="fa-solid fa-download"></i>
+
+                <h3>Resume Downloads</h3>
+
+                <p id="resume-downloads">
+
+                    0
+
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ==========================
+            ADD PROJECT
+    =========================== -->
+
+    <section id="projects">
+
+        <h2>
+
+            Add New Project
+
+        </h2>
+
+        <form id="project-form">
+
+            <input
+            type="text"
+            id="project-title"
+            placeholder="Project Title">
+
+            <input
+            type="text"
+            id="project-category"
+            placeholder="Category">
+
+            <textarea
+            id="project-description"
+            placeholder="Project Description"></textarea>
+
+            <input
+            type="text"
+            id="github-link"
+            placeholder="GitHub Link">
+
+            <input
+            type="text"
+            id="live-link"
+            placeholder="Live Website Link">
+
+            <button type="submit">
+
+                Add Project
+
+            </button>
+
+        </form>
+
+    </section>
+
+
+
+    <!-- ==========================
+            PROJECT LIST
+    =========================== -->
+
+    <section>
+
+        <h2>
+
+            Project List
+
+        </h2>
+
+        <div id="project-list">
+
+            <!-- JavaScript Cards -->
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ==========================
+            CONTACT MESSAGES
+    =========================== -->
+
+    <section id="messages">
+
+        <h2>
+
+            Contact Messages
+
+        </h2>
+
+        <div id="message-list">
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ==========================
+            SETTINGS
+    =========================== -->
+
+    <section id="settings">
+
+        <h2>
+
+            Settings
+
+        </h2>
+
+        <button>
+
+            Change Password
+
+        </button>
+
+    </section>
+
+</main>
+
+<!-- =====================================
+            MAIN CONTENT END
+===================================== -->
+
+
+
+<!-- Firebase -->
 
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
 
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+
 <script src="js/firebase.js"></script>
+
 <script src="js/dashboard.js"></script>
-<script src="js/project2.js"></script>
+
+<script src="js/adminproject.js"></script>
 
 </body>
+
 </html>

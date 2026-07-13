@@ -1,214 +1,946 @@
+/* ======================================================
+                    GOOGLE FONT
+====================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+
+/* ======================================================
+                    ROOT VARIABLES
+====================================================== */
+
+:root{
+
+    /* Main Color */
+
+    --primary:#2563eb;
+
+    /* Hover Color */
+
+    --primary-hover:#1d4ed8;
+
+    /* White */
+
+    --white:#ffffff;
+
+    /* Black */
+
+    --black:#111827;
+
+    /* Gray */
+
+    --gray:#6b7280;
+
+    /* Border */
+
+    --border:#d1d5db;
+
+    /* Background */
+
+    --bg:#f1f5f9;
+
+    /* Card */
+
+    --card:#ffffff;
+
+    /* Shadow */
+
+    --shadow:0 20px 40px rgba(0,0,0,.12);
+
+}
+
+
+/* ======================================================
+                    DARK MODE
+====================================================== */
+
+body.dark{
+
+    --bg:#0f172a;
+
+    --card:#1e293b;
+
+    --white:#f8fafc;
+
+    --black:#ffffff;
+
+    --gray:#cbd5e1;
+
+    --border:#334155;
+
+    --shadow:0 20px 40px rgba(0,0,0,.45);
+
+}
+
+
+/* ======================================================
+                    RESET
+====================================================== */
+
+*{
+
+    margin:0;
+
+    padding:0;
+
+    box-sizing:border-box;
+
+    font-family:"Poppins",sans-serif;
+
+}
+
+
+/* ======================================================
+                    BODY
+====================================================== */
+
+body{
+
+    background:linear-gradient(135deg,#2563eb,#06b6d4);
+
+    min-height:100vh;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    padding:40px;
+
+    transition:.4s;
+
+}
+
+
+/* ======================================================
+                LOGIN SECTION
+====================================================== */
+
+.login{
+
+    width:100%;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+}
+
+
+/* ======================================================
+                LOGIN CONTAINER
+====================================================== */
+
 .login-container{
-width:350px;
-margin:100px auto;
-display:flex;
-flex-direction:column;
-gap:20px;
-}
-.login-container input{
-padding:15px;
-}
-.login-container button{
-padding:15px;
-cursor:pointer;
-}
 
+    width:1100px;
 
-#logout-btn{
-    padding:12px 25px;
-    cursor:pointer;
-    margin-top:20px;
-}
-/* ======================================================
-                PROJECT FORM CONTAINER
-====================================================== */
+    max-width:100%;
 
-/*
-Ye class pure form ko style karegi.
-*/
-.project-form{
+    background:var(--card);
 
-    /*
-    Form ki maximum width.
-    Isse form bahut jyada failta nahi hai.
-    */
-    max-width:700px;
+    border-radius:25px;
 
-    /*
-    Center me lane ke liye.
-    Top-Bottom = 40px
-    Left-Right = Auto
-    */
-    margin:40px auto;
+    overflow:hidden;
 
-    /*
-    Form ke andar space.
-    */
-    padding:25px;
+    display:grid;
 
-    /*
-    Border.
-    */
-    border:1px solid #d1d5db;
+    grid-template-columns:1fr 1fr;
 
-    /*
-    Rounded Corner.
-    */
-    border-radius:12px;
-
-    /*
-    Background Color.
-    */
-    background:#ffffff;
+    box-shadow:var(--shadow);
 
 }
+
 
 /* ======================================================
-                HEADING
+                LEFT SIDE
 ====================================================== */
 
-.project-form h2{
+.login-left{
 
-    /*
-    Heading aur niche ke content ke beech gap.
-    */
-    margin-bottom:20px;
+    background:linear-gradient(135deg,#2563eb,#1e40af);
 
-    /*
-    Text center me.
-    */
+    color:white;
+
+    padding:70px 50px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
     text-align:center;
 
 }
 
+
+/* Logo */
+
+.logo{
+
+    width:130px;
+
+    margin-bottom:30px;
+
+}
+
+
+/* Welcome */
+
+.login-left h1{
+
+    font-size:42px;
+
+    margin-bottom:20px;
+
+}
+
+
+/* Paragraph */
+
+.login-left p{
+
+    font-size:18px;
+
+    line-height:1.8;
+
+    opacity:.9;
+
+}
+
+
 /* ======================================================
-                INPUT & TEXTAREA
+                RIGHT SIDE
 ====================================================== */
 
-/*
-Dono par ek hi CSS lagegi.
-*/
-.project-form input,
-.project-form textarea{
+.login-right{
 
-    /*
-    Puri width le.
-    */
+    padding:60px;
+
+    background:var(--card);
+
+}
+
+
+/* Heading */
+
+.login-right h2{
+
+    text-align:center;
+
+    color:var(--black);
+
+    font-size:34px;
+
+    margin-bottom:40px;
+
+}
+
+
+/* ======================================================
+                FORM
+====================================================== */
+
+#login-form{
+
     width:100%;
 
-    /*
-    Andar spacing.
-    */
-    padding:12px;
+}
 
-    /*
-    Niche gap.
-    */
-    margin-bottom:15px;
 
-    /*
-    Border.
-    */
-    border:1px solid #ccc;
+/* Input Group */
 
-    /*
-    Rounded Border.
-    */
-    border-radius:8px;
+.input-group{
 
-    /*
-    Font Size.
-    */
-    font-size:16px;
+    margin-bottom:25px;
 
-    /*
-    Box sizing.
-    Padding width me include ho.
-    */
-    box-sizing:border-box;
+}
+
+
+/* Label */
+
+.input-group label{
+
+    display:block;
+
+    margin-bottom:10px;
+
+    color:var(--black);
+
+    font-weight:500;
+
+}
+
+
+/* ======================================================
+                PASSWORD BOX
+====================================================== */
+
+.password-box{
+
+    position:relative;
+
+}
+
+
+/* ======================================================
+                FOOTER
+====================================================== */
+
+.login-footer{
+
+    margin-top:35px;
+
+    text-align:center;
+
+    color:var(--gray);
 
 }
 
 /* ======================================================
-                TEXTAREA
+                    INPUT FIELD
 ====================================================== */
 
-.project-form textarea{
+.input-group input{
 
-    /*
-    User sirf vertically resize kar sake.
-    */
-    resize:vertical;
-
-    /*
-    Minimum Height.
-    */
-    min-height:120px;
-
-}
-
-/* ======================================================
-                BUTTON
-====================================================== */
-
-.project-form button{
-
-    /*
-    Puri width.
-    */
     width:100%;
 
-    /*
-    Button Height.
-    */
-    padding:14px;
+    height:55px;
 
-    /*
-    Background.
-    */
-    background:#2563eb;
+    padding:0 18px;
 
-    /*
-    Text Color.
-    */
-    color:#ffffff;
+    border:2px solid var(--border);
 
-    /*
-    Border hata diya.
-    */
-    border:none;
+    border-radius:12px;
 
-    /*
-    Rounded Corner.
-    */
-    border-radius:8px;
+    outline:none;
 
-    /*
-    Cursor Hand.
-    */
-    cursor:pointer;
+    background:transparent;
 
-    /*
-    Font Size.
-    */
+    color:var(--black);
+
     font-size:16px;
 
-    /*
-    Hover animation ke liye.
-    */
     transition:.3s;
 
 }
 
-/* ======================================================
-                BUTTON HOVER
-====================================================== */
+/* Placeholder */
 
-.project-form button:hover{
+.input-group input::placeholder{
 
-    /*
-    Mouse lane par dark color.
-    */
-    background:#1d4ed8;
+    color:var(--gray);
 
 }
+
+/* Focus */
+
+.input-group input:focus{
+
+    border-color:var(--primary);
+
+    box-shadow:0 0 10px rgba(37,99,235,.25);
+
+}
+
+
+/* ======================================================
+                PASSWORD INPUT
+====================================================== */
+
+.password-box input{
+
+    padding-right:60px;
+
+}
+
+
+/* ======================================================
+                SHOW / HIDE PASSWORD BUTTON
+====================================================== */
+
+#toggle-password{
+
+    position:absolute;
+
+    right:15px;
+
+    top:50%;
+
+    transform:translateY(-50%);
+
+    background:none;
+
+    border:none;
+
+    cursor:pointer;
+
+    font-size:20px;
+
+    color:var(--gray);
+
+    transition:.3s;
+
+}
+
+#toggle-password:hover{
+
+    color:var(--primary);
+
+}
+
+
+/* ======================================================
+                REMEMBER BOX
+====================================================== */
+
+.remember-box{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:30px;
+
+    flex-wrap:wrap;
+
+    gap:10px;
+
+}
+
+.remember-box label{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:8px;
+
+    color:var(--black);
+
+    cursor:pointer;
+
+}
+
+.remember-box input{
+
+    width:18px;
+
+    height:18px;
+
+    cursor:pointer;
+
+}
+
+.remember-box a{
+
+    color:var(--primary);
+
+    text-decoration:none;
+
+    transition:.3s;
+
+}
+
+.remember-box a:hover{
+
+    color:var(--primary-hover);
+
+}
+
+
+/* ======================================================
+                    LOGIN BUTTON
+====================================================== */
+
+#login-btn{
+
+    width:100%;
+
+    height:55px;
+
+    border:none;
+
+    border-radius:12px;
+
+    background:linear-gradient(135deg,#2563eb,#1d4ed8);
+
+    color:white;
+
+    font-size:18px;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+#login-btn:hover{
+
+    transform:translateY(-3px);
+
+    box-shadow:0 12px 25px rgba(37,99,235,.35);
+
+}
+
+#login-btn:active{
+
+    transform:scale(.98);
+
+}
+
+
+/* ======================================================
+                LOGIN MESSAGE
+====================================================== */
+
+#login-message{
+
+    margin-top:20px;
+
+    text-align:center;
+
+    font-size:15px;
+
+    font-weight:500;
+
+}
+
+
+/* Success */
+
+.success{
+
+    color:#16a34a;
+
+}
+
+/* Error */
+
+.error{
+
+    color:#dc2626;
+
+}
+
+
+/* ======================================================
+                FORM ANIMATION
+====================================================== */
+
+#login-form{
+
+    animation:fadeUp .8s ease;
+
+}
+
+@keyframes fadeUp{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(30px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}
+
+
+/* ======================================================
+                INPUT HOVER
+====================================================== */
+
+.input-group input:hover{
+
+    border-color:var(--primary);
+
+}
+
+
+/* ======================================================
+                BUTTON DISABLED
+====================================================== */
+
+#login-btn:disabled{
+
+    cursor:not-allowed;
+
+    opacity:.7;
+
+}
+
+
+/* ======================================================
+                SELECTION COLOR
+====================================================== */
+
+::selection{
+
+    background:var(--primary);
+
+    color:#fff;
+
+}
+
+/* ======================================================
+                THEME TOGGLE BUTTON
+====================================================== */
+
+.theme-toggle{
+
+    position:fixed;
+
+    top:20px;
+
+    right:20px;
+
+    width:55px;
+
+    height:55px;
+
+    border:none;
+
+    border-radius:50%;
+
+    background:var(--card);
+
+    color:var(--black);
+
+    cursor:pointer;
+
+    box-shadow:var(--shadow);
+
+    font-size:22px;
+
+    transition:.3s;
+
+    z-index:999;
+
+}
+
+.theme-toggle:hover{
+
+    transform:rotate(180deg);
+
+}
+
+
+/* ======================================================
+                GLASS EFFECT
+====================================================== */
+
+.login-container{
+
+    backdrop-filter:blur(20px);
+
+    -webkit-backdrop-filter:blur(20px);
+
+}
+
+
+/* ======================================================
+                LOGO ANIMATION
+====================================================== */
+
+.logo{
+
+    animation:float 3s ease-in-out infinite;
+
+}
+
+@keyframes float{
+
+    0%{
+
+        transform:translateY(0);
+
+    }
+
+    50%{
+
+        transform:translateY(-10px);
+
+    }
+
+    100%{
+
+        transform:translateY(0);
+
+    }
+
+}
+
+
+/* ======================================================
+                SCROLLBAR
+====================================================== */
+
+::-webkit-scrollbar{
+
+    width:10px;
+
+}
+
+::-webkit-scrollbar-track{
+
+    background:var(--bg);
+
+}
+
+::-webkit-scrollbar-thumb{
+
+    background:var(--primary);
+
+    border-radius:20px;
+
+}
+
+::-webkit-scrollbar-thumb:hover{
+
+    background:var(--primary-hover);
+
+}
+
+
+/* ======================================================
+                TABLET
+====================================================== */
+
+@media(max-width:992px){
+
+.login-container{
+
+width:95%;
+
+}
+
+.login-left{
+
+padding:50px 30px;
+
+}
+
+.login-right{
+
+padding:40px;
+
+}
+
+.login-left h1{
+
+font-size:34px;
+
+}
+
+}
+
+
+/* ======================================================
+                MOBILE
+====================================================== */
+
+@media(max-width:768px){
+
+body{
+
+padding:20px;
+
+}
+
+.login-container{
+
+grid-template-columns:1fr;
+
+}
+
+.login-left{
+
+padding:40px 25px;
+
+}
+
+.login-right{
+
+padding:35px 25px;
+
+}
+
+.login-left h1{
+
+font-size:30px;
+
+}
+
+.login-right h2{
+
+font-size:28px;
+
+}
+
+.logo{
+
+width:90px;
+
+}
+
+.remember-box{
+
+flex-direction:column;
+
+align-items:flex-start;
+
+}
+
+.theme-toggle{
+
+top:15px;
+
+right:15px;
+
+width:48px;
+
+height:48px;
+
+font-size:20px;
+
+}
+
+}
+
+
+/* ======================================================
+                SMALL MOBILE
+====================================================== */
+
+@media(max-width:480px){
+
+.login-left{
+
+padding:30px 20px;
+
+}
+
+.login-right{
+
+padding:25px 20px;
+
+}
+
+.login-left h1{
+
+font-size:24px;
+
+}
+
+.login-left p{
+
+font-size:15px;
+
+}
+
+.input-group input{
+
+height:50px;
+
+font-size:15px;
+
+}
+
+#login-btn{
+
+height:50px;
+
+font-size:16px;
+
+}
+
+}
+
+
+/* ======================================================
+                UTILITY CLASSES
+====================================================== */
+
+.hide{
+
+display:none;
+
+}
+
+.show{
+
+display:block;
+
+}
+
+.text-center{
+
+text-align:center;
+
+}
+
+.w-100{
+
+width:100%;
+
+}
+
+.mt-20{
+
+margin-top:20px;
+
+}
+
+.mb-20{
+
+margin-bottom:20px;
+
+}
+
+
+/* ======================================================
+                LOADING BUTTON
+====================================================== */
+
+.loading{
+
+pointer-events:none;
+
+opacity:.7;
+
+}
+
+
+/* ======================================================
+                SMOOTH TRANSITION
+====================================================== */
+
+*{
+
+transition:background .3s,color .3s,border .3s;
+
+}
+
+
+/* ======================================================
+                END
+====================================================== */
