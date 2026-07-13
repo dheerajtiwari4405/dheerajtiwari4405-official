@@ -1,0 +1,193 @@
+/* ======================================================
+                PROJECT FORM CONTAINER
+====================================================== */
+
+/*
+Ye class pure form ko style karegi.
+*/
+.project-form{
+
+    /*
+    Form ki maximum width.
+    Isse form bahut jyada failta nahi hai.
+    */
+    max-width:700px;
+
+    /*
+    Center me lane ke liye.
+    Top-Bottom = 40px
+    Left-Right = Auto
+    */
+    margin:40px auto;
+
+    /*
+    Form ke andar space.
+    */
+    padding:25px;
+
+    /*
+    Border.
+    */
+    border:1px solid #d1d5db;
+
+    /*
+    Rounded Corner.
+    */
+    border-radius:12px;
+
+    /*
+    Background Color.
+    */
+    background:#ffffff;
+
+}
+
+/* ======================================================
+                HEADING
+====================================================== */
+
+.project-form h2{
+
+    /*
+    Heading aur niche ke content ke beech gap.
+    */
+    margin-bottom:20px;
+
+    /*
+    Text center me.
+    */
+    text-align:center;
+
+}
+
+/* ======================================================
+                INPUT & TEXTAREA
+====================================================== */
+
+/*
+Dono par ek hi CSS lagegi.
+*/
+.project-form input,
+.project-form textarea{
+
+    /*
+    Puri width le.
+    */
+    width:100%;
+
+    /*
+    Andar spacing.
+    */
+    padding:12px;
+
+    /*
+    Niche gap.
+    */
+    margin-bottom:15px;
+
+    /*
+    Border.
+    */
+    border:1px solid #ccc;
+
+    /*
+    Rounded Border.
+    */
+    border-radius:8px;
+
+    /*
+    Font Size.
+    */
+    font-size:16px;
+
+    /*
+    Box sizing.
+    Padding width me include ho.
+    */
+    box-sizing:border-box;
+
+}
+
+/* ======================================================
+                TEXTAREA
+====================================================== */
+
+.project-form textarea{
+
+    /*
+    User sirf vertically resize kar sake.
+    */
+    resize:vertical;
+
+    /*
+    Minimum Height.
+    */
+    min-height:120px;
+
+}
+
+/* ======================================================
+                BUTTON
+====================================================== */
+
+.project-form button{
+
+    /*
+    Puri width.
+    */
+    width:100%;
+
+    /*
+    Button Height.
+    */
+    padding:14px;
+
+    /*
+    Background.
+    */
+    background:#2563eb;
+
+    /*
+    Text Color.
+    */
+    color:#ffffff;
+
+    /*
+    Border hata diya.
+    */
+    border:none;
+
+    /*
+    Rounded Corner.
+    */
+    border-radius:8px;
+
+    /*
+    Cursor Hand.
+    */
+    cursor:pointer;
+
+    /*
+    Font Size.
+    */
+    font-size:16px;
+
+    /*
+    Hover animation ke liye.
+    */
+    transition:.3s;
+
+}
+
+/* ======================================================
+                BUTTON HOVER
+====================================================== */
+
+.project-form button:hover{
+
+    /*
+    Mouse lane par dark color.
+    */
+    background:#1d4ed8;
+
+}
