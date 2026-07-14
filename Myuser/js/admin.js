@@ -5,11 +5,11 @@ const form = document.querySelector("#project-form");
 /*
 Input Select
 */
-const titleInput = document.querySelector("#project-title");
-const descriptionInput = document.querySelector("#project-description");
-const categoryInput = document.querySelector("#project-category");
-const demoInput = document.querySelector("#project-demo");
-const githubInput = document.querySelector("#project-github");
+// // const titleInput = document.querySelector("#project-title");
+// const descriptionInput = document.querySelector("#project-description");
+// const categoryInput = document.querySelector("#project-category");
+// const demoInput = document.querySelector("#project-demo");
+// const githubInput = document.querySelector("#project-github");
 
 
 form.addEventListener("submit",(event)=>{

@@ -14,6 +14,8 @@ const firebaseConfig = {
   messagingSenderId: "832117938509",
   appId: "1:832117938509:web:2f7f65fcf74451015b3f04"
 };
+
+// Ab db.collection() nahi chalega kyunki ye v9 syntax nahi hai
 /*
 Firebase Initialize
 */

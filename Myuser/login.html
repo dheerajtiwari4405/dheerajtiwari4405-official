@@ -2,19 +2,10 @@
 <html lang="en">
 
 <head>
-
-    <!-- Character Encoding -->
     <meta charset="UTF-8">
-
-    <!-- Responsive Website -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <!-- Website Title -->
     <title>Admin Login | Dheeraj Official</title>
-
-    <!-- Login CSS -->
     <link rel="stylesheet" href="css/login.css">
-
 </head>
 
 <body>
@@ -22,189 +13,107 @@
     <!-- ==========================================
                 LOGIN SECTION START
     =========================================== -->
-
     <section class="login">
-
         <!-- Login Container -->
-
         <div class="login-container">
-
             <!-- =========================
                     LEFT SIDE
             ========================== -->
-
             <div class="login-left">
-
                 <!-- Website Logo -->
-
                 <img
                     src="assets/logo/logo.png"
                     alt="Website Logo"
                     class="logo">
-
                 <!-- Welcome Heading -->
-
                 <h1>
-
                     Welcome Back 👋
-
                 </h1>
-
                 <!-- Small Description -->
-
                 <p>
-
                     Login to access your Admin Dashboard.
-
                 </p>
-
             </div>
-
             <!-- =========================
                     RIGHT SIDE
             ========================== -->
-
             <div class="login-right">
-
                 <!-- Login Heading -->
-
                 <h2>
-
                     Admin Login
-
                 </h2>
-
                 <!-- Login Form -->
-
                 <form id="login-form">
-
                     <!-- Email -->
-
                     <div class="input-group">
-
                         <label for="email">
-
                             Email Address
-
                         </label>
-
                         <input
                             type="email"
                             id="email"
                             placeholder="Enter your email"
                             required>
-
                     </div>
-
                     <!-- Password -->
-
                     <div class="input-group">
-
                         <label for="password">
-
                             Password
-
                         </label>
-
                         <div class="password-box">
-
                             <input
                                 type="password"
                                 id="password"
                                 placeholder="Enter your password"
                                 required>
-
                             <!-- Show Hide Password -->
-
                             <button
                                 type="button"
                                 id="toggle-password">
-
                                 👁
-
                             </button>
-
                         </div>
-
                     </div>
-
                     <!-- Remember Me -->
-
                     <div class="remember-box">
-
                         <label>
-
                             <input
                                 type="checkbox"
                                 id="remember">
-
                             Remember Me
-
                         </label>
-
                         <a href="#">
-
                             Forgot Password?
-
                         </a>
-
                     </div>
-
                     <!-- Login Button -->
-
                     <button
                         type="submit"
                         id="login-btn">
-
                         Login
-
                     </button>
-
                     <!-- Login Message -->
-
                     <p id="login-message">
-
                     </p>
-
                 </form>
-
                 <!-- Bottom Text -->
-
                 <div class="login-footer">
-
                     <p>
-
                         Only authorized admin can access this dashboard.
-
                     </p>
-
                 </div>
-
             </div>
-
         </div>
-
     </section>
-
     <!-- ==========================================
                 LOGIN SECTION END
     =========================================== -->
-
-
     <!-- Firebase SDK -->
-
     <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
-
     <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
-
     <!-- Firebase Config -->
-
     <script src="js/firebase.js"></script>
-
     <!-- Login JavaScript -->
-
     <script src="js/login.js"></script>
-
 </body>
-
 </html>

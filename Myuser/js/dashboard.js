@@ -1,7 +1,3 @@
-/* =====================================================
-            DASHBOARD JAVASCRIPT
-===================================================== */
-
 
 /* =====================================================
             DOM ELEMENTS
@@ -12,456 +8,250 @@ select kar rahe hain.
 
 Inke bina hum un par koi action nahi kar sakte.
 */
-
 const menuBtn = document.querySelector("#menu-btn");
-
 const sidebar = document.querySelector(".sidebar");
-
 const themeBtn = document.querySelector("#theme-btn");
-
 const logoutBtn = document.querySelector("#logout-btn");
-
 const body = document.body;
 
-
-/* =====================================================
-            SIDEBAR TOGGLE
-=====================================================
+/* =======SIDEBAR TOGGLE=========
 
 Mobile me sidebar hidden rahega.
-
 Menu button dabane par sidebar open/close hoga.
 */
-
 menuBtn.addEventListener("click",()=>{
-
     /*
     Sidebar me "show" class add/remove hogi.
     */
-
     sidebar.classList.toggle("show");
-
 });
-
-
-/* =====================================================
-            DARK / LIGHT MODE
-=====================================================
-
+/* ==== DARK / LIGHT MODE===
 Browser ke LocalStorage se check karo
 ki user ne pehle kaunsi theme use ki thi.
 */
-
 const savedTheme = localStorage.getItem("theme");
-
-
 /*
 Agar Dark Theme mili.
 */
-
 if(savedTheme==="dark"){
-
     /*
     Body me dark class add.
     */
-
     body.classList.add("dark");
-
     /*
     Theme button ka icon badal do.
     */
-
     themeBtn.innerHTML="☀️";
-
 }
-
-
-/* =====================================================
-            THEME BUTTON
-=====================================================
-
-Har click par Dark aur Light mode
+/* ===== THEME BUTTON=========
+Har click ar Dark aur Light mode
 ek dusre me badlenge.
 */
-
 themeBtn.addEventListener("click",()=>{
-
     /*
     Dark class add/remove.
     */
-
     body.classList.toggle("dark");
-
-
     /*
     Agar body me dark class hai.
     */
-
     if(body.classList.contains("dark")){
-
         /*
         Browser me save.
         */
-
         localStorage.setItem("theme","dark");
-
         /*
         Button icon.
         */
-
         themeBtn.innerHTML="☀️";
-
     }
-
     /*
     Agar Light Mode hai.
     */
-
     else{
-
         /*
         Browser me save.
         */
-
         localStorage.setItem("theme","light");
-
         /*
         Button icon.
         */
-
         themeBtn.innerHTML="🌙";
-
     }
-
 });
-
-
-/* =====================================================
-            ACTIVE MENU
-=====================================================
-
+/* =====ACTIVE MENU==
 Jis menu par click hoga
 sirf wahi Active dikhega.
 */
-
 const menuItems = document.querySelectorAll(".sidebar ul li");
-
-
 menuItems.forEach((item)=>{
-
     item.addEventListener("click",()=>{
-
         /*
         Sabse pehle sabka active remove.
         */
-
         menuItems.forEach((menu)=>{
-
             menu.classList.remove("active");
-
         });
-
         /*
         Jis par click hua
         usme active add.
         */
-
         item.classList.add("active");
-
     });
-
 });
-
-
-/* =====================================================
-        FIREBASE AUTH PROTECTION
-=====================================================
-
+/* ==== FIREBASE AUTH PROTECTION====
 Dashboard sirf login user hi dekh sakta hai.
-
 Agar user login nahi hai to
 use login page par bhej do.
 */
-
 auth.onAuthStateChanged((user)=>{
-
     /*
     Agar user login nahi hai
     */
-
     if(!user){
-
         /*
         Login page par redirect
         */
-
         window.location.href="login.html";
-
         return;
-
     }
-
     /*
     User login hai
     */
-
     console.log("Welcome :", user.email);
-
 });
-
-
-
-/* =====================================================
-            LOGOUT BUTTON
-=====================================================
-
+/* ==== LOGOUT BUTTON===
 Logout button click hone par
 Firebase se logout karao.
 */
-
 logoutBtn.addEventListener("click",()=>{
-
     /*
     User se confirmation lo.
     */
-
     const confirmLogout = confirm(
-
         "Kya aap Logout karna chahte hain?"
-
     );
-
     /*
     Agar Cancel dabaya
     */
-
     if(!confirmLogout){
-
         return;
-
     }
-
     /*
     Logout Button Disable
     */
-
     logoutBtn.disabled = true;
-
     /*
     Button Text Change
     */
-
     logoutBtn.innerHTML = "Logging Out...";
-
-
-
     /*
     Firebase Logout
     */
-
     auth.signOut()
-
     .then(()=>{
-
         /*
         LocalStorage Theme delete nahi karenge.
-
         Sirf login related data delete karenge.
         */
-
         sessionStorage.clear();
-
-
-
         /*
         Success Message
         */
-
         alert("Logout Successful ✅");
-
-
-
         /*
         Login Page
         */
-
         window.location.href="login.html";
-
     })
-
-
-
     .catch((error)=>{
-
         /*
         Console Error
         */
-
         console.log(error);
-
-
-
         /*
         User Message
         */
-
         alert("Logout Failed ❌");
-
-
-
         /*
         Button Restore
         */
-
         logoutBtn.disabled = false;
-
         logoutBtn.innerHTML = "Logout";
-
     });
-
 });
 
-
-
-/* =====================================================
-            SIDEBAR AUTO CLOSE
-=====================================================
-
+/* ==SIDEBAR AUTO CLOSE==
 Mobile me agar sidebar open hai
 aur user sidebar ke bahar click kare
-
 to sidebar close ho jayega.
 */
-
 document.addEventListener("click",(event)=>{
-
     /*
     Screen Width Check
     */
-
     if(window.innerWidth <= 992){
-
         /*
         Agar click sidebar aur menu button
         ke bahar hua
         */
-
         if(
-
-            !sidebar.contains(event.target)
-
-            &&
-
-            !menuBtn.contains(event.target)
-
+            !sidebar.contains(event.target) && !menuBtn.contains(event.target)
         ){
-
             /*
             Sidebar Hide
             */
-
             sidebar.classList.remove("show");
-
         }
-
     }
-
 });
 
-
-
-/* =====================================================
-            ESC KEY
-=====================================================
-
+/* == ESC KEY====
 Keyboard se ESC dabane par
-
 Sidebar close.
 */
-
 document.addEventListener("keydown",(event)=>{
-
     /*
     ESC Key
     */
-
     if(event.key==="Escape"){
-
         sidebar.classList.remove("show");
-
     }
-
 });
-
-
-
-/* =====================================================
-            PAGE LOADING
-=====================================================
-
+/* ==== PAGE LOADING====
 Dashboard Load hone par
-
 Smooth Animation.
 */
-
 window.addEventListener("load",()=>{
-
     /*
     Body Fade
     */
-
     body.classList.add("fade");
-
 });
-
-/* =====================================================
-        DASHBOARD COUNTERS
-=====================================================
-
+/* === DASHBOARD COUNTERS======
 Dashboard ke cards me data dikhayenge.
-
 Jaise:
-
 Projects
-
 Messages
-
 Visitors
-
 Resume Downloads
-
 */
-
-
 /*
 Projects Card
 */
-
 const totalProjects = document.querySelector("#total-projects");
-
-
 /*
 Messages Card
 */
-
 const totalMessages = document.querySelector("#total-messages");
-
-
 /*
 Visitors Card
 */
-
 const totalVisitors = document.querySelector("#total-visitors");
-
-
 /*
 Resume Downloads Card
 */
-
 const resumeDownloads = document.querySelector("#resume-downloads");
-
-
-
 /* =====================================================
         PROJECT COUNT
 =====================================================
@@ -961,275 +751,144 @@ function deleteProject(id){
     */
 
     const result=confirm(
-
         "Kya aap Project Delete karna chahte hain?"
-
     );
-
-
     /*
     Cancel
     */
-
     if(!result){
-
         return;
-
     }
-
-
     /*
     Delete
     */
-
     db.collection("projects")
-
     .doc(id)
-
     .delete()
-
     .then(()=>{
-
         alert(
-
             "Project Deleted Successfully ✅"
-
         );
-
     })
-
     .catch((error)=>{
-
         console.log(error);
-
         alert(
-
             "Delete Failed ❌"
-
         );
-
     });
-
 }
-
-
-
-/* =====================================================
-            EDIT PROJECT
-=====================================================
+/* ======EDIT PROJECT========
 
 Abhi sirf Demo.
-
 Next Part me complete Edit banega.
 */
-
 function editProject(id){
-
     console.log(
-
         "Edit Project ID :",
-
         id
-
     );
-
 }
-
-
-
-/* =====================================================
-            PAGE LOAD
-=====================================================
+/* ====== PAGE LOAD======
 
 Dashboard open hote hi
 Projects Load.
 */
-
 window.addEventListener("load",()=>{
-
     loadProjects();
-
 });
-
-/* =====================================================
-            EDIT PROJECT
-=====================================================
+/* =====EDIT PROJECT====
 
 Global Variable
-
 Isme current edit hone wale
 Project ki ID store hogi.
 */
-
 let editProjectId = null;
-
-
-/* =====================================================
-            EDIT BUTTON
-===================================================== */
+/* =====EDIT BUTTON=== */
 
 function editProject(id){
-
     /*
     Firestore se Data Read
     */
-
     db.collection("projects")
-
     .doc(id)
-
     .get()
-
     .then((doc)=>{
-
         /*
         Data
         */
-
         const project = doc.data();
-
         /*
         ID Save
         */
-
         editProjectId = id;
-
         /*
         Form Fill
         */
-
         titleInput.value = project.title;
-
         categoryInput.value = project.category;
-
         descriptionInput.value = project.description;
-
         githubInput.value = project.github;
-
         liveInput.value = project.live;
-
-        /*
+      /*
         Button Change
         */
-
         projectForm.querySelector("button").innerHTML="Update Project";
-
     });
-
 }
-
-
-
 /* =====================================================
             UPDATE PROJECT
 ===================================================== */
-
 function updateProject(){
-
     db.collection("projects")
-
     .doc(editProjectId)
-
     .update({
-
         title:titleInput.value.trim(),
-
         category:categoryInput.value.trim(),
-
         description:descriptionInput.value.trim(),
-
         github:githubInput.value.trim(),
-
         live:liveInput.value.trim()
-
     })
-
     .then(()=>{
-
         alert("Project Updated Successfully ✅");
-
         projectForm.reset();
-
         editProjectId = null;
-
         projectForm.querySelector("button").innerHTML="Add Project";
-
     })
-
     .catch((error)=>{
-
         console.log(error);
-
     });
-
 }
-
-
-
-/* =====================================================
-        FORM SUBMIT UPDATE CHECK
-=====================================================
+/* ===FORM SUBMIT UPDATE CHECK======
 
 Project Add karna hai ya Update?
-
 */
-
 projectForm.addEventListener("submit",(event)=>{
-
     /*
     Agar Edit Mode hai
     */
-
     if(editProjectId){
-
         event.preventDefault();
-
         updateProject();
-
     }
-
 });
 
-
-
-/* =====================================================
-            SEARCH PROJECT
-===================================================== */
-
+/* ======SEARCH PROJECT=== */
 const searchInput = document.querySelector("#search-project");
-
-
 if(searchInput){
-
 searchInput.addEventListener("keyup",()=>{
-
 const value = searchInput.value.toLowerCase();
-
 const cards = document.querySelectorAll(".project-card");
-
 cards.forEach((card)=>{
-
 const text = card.innerText.toLowerCase();
-
 if(text.includes(value)){
-
 card.style.display="block";
-
 }
-
 else{
-
 card.style.display="none";
-
 }
-
 });
-
 });
-
 }
-
-
 
 /* =====================================================
             LOG

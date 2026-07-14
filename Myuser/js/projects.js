@@ -1,39 +1,86 @@
-/* ======================================================
-            PROJECT DATABASE
-======================================================
-Is array ko website ka mini database samjho.Future me sirf ek object add karoge.Naya card automatically ban jayega.==================================================== */
+// /* ======================================================
+//             LOCAL PROJECT 
+// ======================================================
+// Is array ko website ka mini database samjho.Future me sirf ek object add karoge.Naya card automatically ban jayega.==================================================== */
 
-const projects=[{
-    title:"Random Color Generator",
-    category:"javascript",
-    description:"Generate Unlimited Random Colors",
-    github:"#",
-    demo:"#"
-},
-{
-    title:"Chat Web App",
-    category:"firebase",
-    description:"Realtime Chat Application",
-    github:"#",
-    demo:"#"
-},
-{
-    title:"Weather App",
-    category:"javascript",
-    description:"Live Weather Using API",
-    github:"#",
-    demo:"#"
-},
+// const projects=[{
+//     title:"Random Color Generator",
+//     category:"javascript",
+//     description:"Generate Unlimited Random Colors",
+//     github:"#",
+//     live:"#"
+// },];
 
-{
-    title:"Portfolio Website",
-    category:"html",
-    image:"assets/images/random-color.png",
-    description:"Responsive Portfolio",
-    github:"#",
-    demo:"#"
-}];
-/* ============================================================
+/*
+===================================
+FIRESTORE PROJECT ARRAY
+===================================
+*/
+
+let projects = [];
+
+/*
+===================================
+LOAD PROJECTS FROM FIRESTORE
+===================================
+*/
+
+
+db.collection("projects")
+.orderBy("createdAt", "desc")
+.onSnapshot((snapshot)=>{
+
+    // Array ko khali karo
+    projects = [];
+
+    // Firestore ka data array me dalo
+    snapshot.forEach((doc)=>{
+
+        projects.push({
+
+            id: doc.id,
+
+            ...doc.data()
+
+        });
+
+    });
+
+    // Website par cards dikhao
+    displayProjects(projects);
+
+});
+// Website load hote hi Firestore se data lao
+
+db.collection("projects")
+.onSnapshot((snapshot)=>{
+
+    // Purana array khali karo
+
+    projects.length = 0;
+
+    // Firestore ka data array me dalo
+
+    snapshot.forEach((doc)=>{
+
+        projects.push({
+
+            id: doc.id,
+
+            ...doc.data()
+
+        });
+
+    });
+
+    // Cards dobara banao
+
+    displayProjects(projects);
+
+});
+
+/*
+=====================================
                 PROJECT CARD RENDERING
 =======Ye function project array se HTML banayega.Agar kal 100 projects ho gaye...To bhi sirf array me object add karna padega.Card automatically ban jayega.=== */
 /*
@@ -77,7 +124,7 @@ function displayProjects(projectList){
             <p>${project.description}</p>
             <span>${project.category}</span>
             <div class="project-buttons">
-                <a href="${project.demo}" target="_blank">
+                <a href="${project.live}" target="_blank">
                     Live Demo
                 </a>
                 <a href="${project.github}" target="_blank">
@@ -95,7 +142,7 @@ card.addEventListener("click", () => {
             ${project.category}
         </p>
         <div class="modal-buttons">
-            <a href="${project.demo}" target="_blank">
+            <a href="${project.live}" target="_blank">
                 Live Demo
             </a>
             <a href="${project.github}" target="_blank">
@@ -109,7 +156,7 @@ card.addEventListener("click", () => {
 }
         /*Website Load  ↓  Function Call*/
 
-displayProjects(projects);
+// displayProjects(projects);
 /* ==============MODAL ELEMENTS================= */
 const modal = document.querySelector("#project-modal");
 const modalContent = document.querySelector("#modal-content");
