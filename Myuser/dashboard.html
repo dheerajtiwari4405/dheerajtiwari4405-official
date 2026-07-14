@@ -2,269 +2,127 @@
 <html lang="en">
 
 <head>
-
-    <!-- Character Encoding -->
     <meta charset="UTF-8">
-
-    <!-- Responsive Website -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <!-- Page Title -->
     <title>Admin Dashboard | Dheeraj Official</title>
-
-    <!-- Dashboard CSS -->
     <link rel="stylesheet" href="css/dashboard.css">
-
-    <!-- Font Awesome Icons -->
     <link rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
-
 </head>
-
 <body>
-
-<!-- =====================================
-            SIDEBAR START
-===================================== -->
-
+<!-- ======SIDEBAR START====== -->
 <aside class="sidebar">
-
     <!-- Logo -->
-
     <div class="logo">
-
         <img src="assets/logo/logo.png" alt="Logo">
-
         <h2>Dheeraj</h2>
-
     </div>
-
     <!-- Navigation -->
-
     <nav>
-
         <ul>
-
             <li class="active">
-
                 <a href="#dashboard">
-
                     <i class="fa-solid fa-house"></i>
-
                     Dashboard
-
                 </a>
-
             </li>
-
             <li>
-
                 <a href="#projects">
-
                     <i class="fa-solid fa-folder"></i>
-
                     Projects
-
                 </a>
-
             </li>
-
             <li>
-
                 <a href="#messages">
-
                     <i class="fa-solid fa-envelope"></i>
-
                     Messages
-
                 </a>
-
             </li>
-
             <li>
-
                 <a href="#skills">
-
                     <i class="fa-solid fa-code"></i>
-
                     Skills
-
                 </a>
-
             </li>
-
             <li>
-
                 <a href="#about">
-
                     <i class="fa-solid fa-user"></i>
-
                     About
-
                 </a>
-
             </li>
-
             <li>
-
                 <a href="#settings">
-
                     <i class="fa-solid fa-gear"></i>
-
                     Settings
-
                 </a>
-
             </li>
-
         </ul>
-
     </nav>
-
 </aside>
+<!-- =====SIDEBAR END=== -->
 
-<!-- =====================================
-            SIDEBAR END
-===================================== -->
-
-
-
-
-
-<!-- =====================================
-            MAIN CONTENT START
-===================================== -->
-
+<!-- ==MAIN CONTENT START===== -->
 <main class="main-content">
-
     <!-- Header -->
-
     <header class="header">
-
         <button id="menu-btn">
-
             <i class="fa-solid fa-bars"></i>
-
         </button>
-
         <h1>
-
             Admin Dashboard
-
         </h1>
-
         <div class="header-right">
-
             <button id="theme-btn">
-
                 🌙
-
             </button>
-
             <button id="logout-btn">
-
                 Logout
-
             </button>
-
         </div>
-
     </header>
-
-
-
-    <!-- ==========================
-            DASHBOARD SECTION
-    =========================== -->
-
+    <!--  DASHBOARD SECTION== -->
     <section id="dashboard">
-
         <h2>
-
             Dashboard Overview
-
         </h2>
-
         <!-- Dashboard Cards -->
-
         <div class="cards">
-
             <div class="card">
-
                 <i class="fa-solid fa-folder"></i>
-
                 <h3>Total Projects</h3>
-
                 <p id="total-projects">
-
                     0
-
                 </p>
-
             </div>
-
             <div class="card">
-
                 <i class="fa-solid fa-envelope"></i>
-
                 <h3>Total Messages</h3>
-
                 <p id="total-messages">
-
                     0
-
                 </p>
-
             </div>
-
             <div class="card">
-
                 <i class="fa-solid fa-eye"></i>
-
                 <h3>Total Visitors</h3>
-
                 <p id="total-visitors">
-
                     0
-
                 </p>
-
             </div>
-
             <div class="card">
-
                 <i class="fa-solid fa-download"></i>
-
                 <h3>Resume Downloads</h3>
-
                 <p id="resume-downloads">
-
                     0
-
                 </p>
-
             </div>
-
         </div>
-
     </section>
-
-
-
-    <!-- ==========================
-            ADD PROJECT
-    =========================== -->
-
+    <!-- =ADD PROJECT= -->
     <section id="projects">
-
         <h2>
-
             Add New Project
-
         </h2>
-
         <form id="project-form">
-
             <input
             type="text"
             id="project-title"
@@ -288,88 +146,75 @@
             type="text"
             id="live-link"
             placeholder="Live Website Link">
+            <!-- Project Image -->
+                <input type="file" id="project-image" accept="image/*">
 
-            <button type="submit">
+                <!-- Edit Mode -->
 
-                Add Project
+<input
+type="hidden"
+id="edit-id">
 
-            </button>
 
+            <button  type="submit" id="save-project-btn">Add Project</button>
         </form>
-
     </section>
-
-
-
-    <!-- ==========================
-            PROJECT LIST
-    =========================== -->
-
+    <!-- =PROJECT LIst==== -->
     <section>
-
         <h2>
-
             Project List
-
         </h2>
-
-        <div id="project-list">
-
-            <!-- JavaScript Cards -->
-
-        </div>
-
+                <div
+                id="project-list" class="project-grid">
+                </div>
     </section>
-
-
-
-    <!-- ==========================
-            CONTACT MESSAGES
-    =========================== -->
-
+    <!-- CONTACT MESSAGES== -->
     <section id="messages">
-
         <h2>
-
             Contact Messages
-
         </h2>
-
         <div id="message-list">
-
         </div>
-
     </section>
-
-
-
     <!-- ==========================
             SETTINGS
     =========================== -->
-
     <section id="settings">
-
         <h2>
-
             Settings
-
         </h2>
-
         <button>
-
             Change Password
-
         </button>
-
     </section>
+    <!-- ====DELETE MODAL= -->
 
+                <div
+                    id="delete-modal" class="modal">
+    <div class="modal-content">
+        <h2> Delete Project </h2>
+        <p> Are you sure you want to delete this project?</p>
+        <div class="modal-buttons">
+            <button id="confirm-delete">   Yes Delete</button>
+            <button id="cancel-delete"> Cancel </button>
+        </div>
+    </div>
+</div>
 </main>
-
 <!-- =====================================
             MAIN CONTENT END
 ===================================== -->
 
+ <div
+id="loading-screen">
 
+    <div class="loader"></div>
+
+</div>
+<div
+id="toast">
+
+</div>
 
 <!-- Firebase -->
 
@@ -383,9 +228,11 @@
 
 <script src="js/dashboard.js"></script>
 
-<script src="js/adminproject.js"></script>
+<!-- <script src="js/adminproject.js"></script> -->
 
- <script src="js/admin.js"></script>
+ <!-- <script src="js/admin.js"></script> -->
+
+
 
 </body>
 

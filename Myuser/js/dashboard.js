@@ -1,503 +1,162 @@
+/* ==========================================================
+                DASHBOARD.JS
+                PART 3.1
+        DOM + VARIABLES + INITIAL SETUP
+========================================================== */
 
-/* =====================================================
-            DOM ELEMENTS
-=====================================================
 
-HTML ke important elements ko JavaScript me
-select kar rahe hain.
+/* ==========================================================
+                PROJECT FORM
+========================================================== */
 
-Inke bina hum un par koi action nahi kar sakte.
-*/
-const menuBtn = document.querySelector("#menu-btn");
+// Project Add/Edit Form
+const projectForm = document.getElementById("project-form");
+
+// Project Title Input
+const titleInput = document.getElementById("project-title");
+
+// Project Category Input
+const categoryInput = document.getElementById("project-category");
+
+// Project Description
+const descriptionInput = document.getElementById("project-description");
+
+// GitHub Link
+const githubInput = document.getElementById("github-link");
+
+// Live Website Link
+const liveInput = document.getElementById("live-link");
+
+// Image Input
+const imageInput = document.getElementById("project-image");
+
+// Hidden Edit ID
+const editIdInput = document.getElementById("edit-id");
+
+// Submit Button
+const saveButton = document.getElementById("save-project-btn");
+
+
+/* ==========================================================
+                PROJECT LIST
+========================================================== */
+
+// Yaha saare project cards show honge
+const projectList = document.getElementById("project-list");
+
+
+/* ==========================================================
+                DASHBOARD COUNTERS
+========================================================== */
+
+// Total Projects
+const totalProjects = document.getElementById("total-projects");
+
+// Total Messages
+const totalMessages = document.getElementById("total-messages");
+
+// Total Visitors
+const totalVisitors = document.getElementById("total-visitors");
+
+// Resume Downloads
+const resumeDownloads = document.getElementById("resume-downloads");
+
+
+/* ==========================================================
+                HEADER BUTTONS
+========================================================== */
+
+// Dark Mode Button
+const themeBtn = document.getElementById("theme-btn");
+
+// Logout Button
+const logoutBtn = document.getElementById("logout-btn");
+
+// Sidebar Menu Button
+const menuBtn = document.getElementById("menu-btn");
+
+// Sidebar
 const sidebar = document.querySelector(".sidebar");
-const themeBtn = document.querySelector("#theme-btn");
-const logoutBtn = document.querySelector("#logout-btn");
-const body = document.body;
-
-/* =======SIDEBAR TOGGLE=========
-
-Mobile me sidebar hidden rahega.
-Menu button dabane par sidebar open/close hoga.
-*/
-menuBtn.addEventListener("click",()=>{
-    /*
-    Sidebar me "show" class add/remove hogi.
-    */
-    sidebar.classList.toggle("show");
-});
-/* ==== DARK / LIGHT MODE===
-Browser ke LocalStorage se check karo
-ki user ne pehle kaunsi theme use ki thi.
-*/
-const savedTheme = localStorage.getItem("theme");
-/*
-Agar Dark Theme mili.
-*/
-if(savedTheme==="dark"){
-    /*
-    Body me dark class add.
-    */
-    body.classList.add("dark");
-    /*
-    Theme button ka icon badal do.
-    */
-    themeBtn.innerHTML="☀️";
-}
-/* ===== THEME BUTTON=========
-Har click ar Dark aur Light mode
-ek dusre me badlenge.
-*/
-themeBtn.addEventListener("click",()=>{
-    /*
-    Dark class add/remove.
-    */
-    body.classList.toggle("dark");
-    /*
-    Agar body me dark class hai.
-    */
-    if(body.classList.contains("dark")){
-        /*
-        Browser me save.
-        */
-        localStorage.setItem("theme","dark");
-        /*
-        Button icon.
-        */
-        themeBtn.innerHTML="☀️";
-    }
-    /*
-    Agar Light Mode hai.
-    */
-    else{
-        /*
-        Browser me save.
-        */
-        localStorage.setItem("theme","light");
-        /*
-        Button icon.
-        */
-        themeBtn.innerHTML="🌙";
-    }
-});
-/* =====ACTIVE MENU==
-Jis menu par click hoga
-sirf wahi Active dikhega.
-*/
-const menuItems = document.querySelectorAll(".sidebar ul li");
-menuItems.forEach((item)=>{
-    item.addEventListener("click",()=>{
-        /*
-        Sabse pehle sabka active remove.
-        */
-        menuItems.forEach((menu)=>{
-            menu.classList.remove("active");
-        });
-        /*
-        Jis par click hua
-        usme active add.
-        */
-        item.classList.add("active");
-    });
-});
-/* ==== FIREBASE AUTH PROTECTION====
-Dashboard sirf login user hi dekh sakta hai.
-Agar user login nahi hai to
-use login page par bhej do.
-*/
-auth.onAuthStateChanged((user)=>{
-    /*
-    Agar user login nahi hai
-    */
-    if(!user){
-        /*
-        Login page par redirect
-        */
-        window.location.href="login.html";
-        return;
-    }
-    /*
-    User login hai
-    */
-    console.log("Welcome :", user.email);
-});
-/* ==== LOGOUT BUTTON===
-Logout button click hone par
-Firebase se logout karao.
-*/
-logoutBtn.addEventListener("click",()=>{
-    /*
-    User se confirmation lo.
-    */
-    const confirmLogout = confirm(
-        "Kya aap Logout karna chahte hain?"
-    );
-    /*
-    Agar Cancel dabaya
-    */
-    if(!confirmLogout){
-        return;
-    }
-    /*
-    Logout Button Disable
-    */
-    logoutBtn.disabled = true;
-    /*
-    Button Text Change
-    */
-    logoutBtn.innerHTML = "Logging Out...";
-    /*
-    Firebase Logout
-    */
-    auth.signOut()
-    .then(()=>{
-        /*
-        LocalStorage Theme delete nahi karenge.
-        Sirf login related data delete karenge.
-        */
-        sessionStorage.clear();
-        /*
-        Success Message
-        */
-        alert("Logout Successful ✅");
-        /*
-        Login Page
-        */
-        window.location.href="login.html";
-    })
-    .catch((error)=>{
-        /*
-        Console Error
-        */
-        console.log(error);
-        /*
-        User Message
-        */
-        alert("Logout Failed ❌");
-        /*
-        Button Restore
-        */
-        logoutBtn.disabled = false;
-        logoutBtn.innerHTML = "Logout";
-    });
-});
-
-/* ==SIDEBAR AUTO CLOSE==
-Mobile me agar sidebar open hai
-aur user sidebar ke bahar click kare
-to sidebar close ho jayega.
-*/
-document.addEventListener("click",(event)=>{
-    /*
-    Screen Width Check
-    */
-    if(window.innerWidth <= 992){
-        /*
-        Agar click sidebar aur menu button
-        ke bahar hua
-        */
-        if(
-            !sidebar.contains(event.target) && !menuBtn.contains(event.target)
-        ){
-            /*
-            Sidebar Hide
-            */
-            sidebar.classList.remove("show");
-        }
-    }
-});
-
-/* == ESC KEY====
-Keyboard se ESC dabane par
-Sidebar close.
-*/
-document.addEventListener("keydown",(event)=>{
-    /*
-    ESC Key
-    */
-    if(event.key==="Escape"){
-        sidebar.classList.remove("show");
-    }
-});
-/* ==== PAGE LOADING====
-Dashboard Load hone par
-Smooth Animation.
-*/
-window.addEventListener("load",()=>{
-    /*
-    Body Fade
-    */
-    body.classList.add("fade");
-});
-/* === DASHBOARD COUNTERS======
-Dashboard ke cards me data dikhayenge.
-Jaise:
-Projects
-Messages
-Visitors
-Resume Downloads
-*/
-/*
-Projects Card
-*/
-const totalProjects = document.querySelector("#total-projects");
-/*
-Messages Card
-*/
-const totalMessages = document.querySelector("#total-messages");
-/*
-Visitors Card
-*/
-const totalVisitors = document.querySelector("#total-visitors");
-/*
-Resume Downloads Card
-*/
-const resumeDownloads = document.querySelector("#resume-downloads");
-/* =====================================================
-        PROJECT COUNT
-=====================================================
-
-Firestore ke projects collection se
-
-Total Documents Count karenge.
-*/
-
-function loadProjectCount(){
-
-    db.collection("projects")
-
-    .get()
-
-    .then((snapshot)=>{
-
-        /*
-        Total Projects
-        */
-
-        totalProjects.innerHTML = snapshot.size;
-
-    })
-
-    .catch((error)=>{
-
-        console.log(error);
-
-    });
-
-}
-
-
-
-/* =====================================================
-        MESSAGE COUNT
-===================================================== */
-
-function loadMessageCount(){
-
-    db.collection("messages")
-
-    .get()
-
-    .then((snapshot)=>{
-
-        totalMessages.innerHTML = snapshot.size;
-
-    })
-
-    .catch((error)=>{
-
-        console.log(error);
-
-    });
-
-}
-
-
-
-/* =====================================================
-        VISITOR COUNT
-=====================================================
 
-Abhi Firebase Analytics
-nahi use kar rahe.
 
-Isliye LocalStorage Demo.
-*/
+/* ==========================================================
+                MODAL
+========================================================== */
 
-function loadVisitorCount(){
+// Delete Modal
+const deleteModal = document.getElementById("delete-modal");
 
-    let visitors = localStorage.getItem("visitors");
+// Delete Confirm Button
+const confirmDeleteBtn = document.getElementById("confirm-delete");
 
+// Cancel Delete
+const cancelDeleteBtn = document.getElementById("cancel-delete");
 
-    /*
-    Pehli baar
-    */
 
-    if(visitors===null){
+/* ==========================================================
+                LOADING
+========================================================== */
 
-        visitors = 1;
+// Loading Screen
+const loadingScreen = document.getElementById("loading-screen");
 
-    }
 
-    else{
+/* ==========================================================
+                TOAST
+========================================================== */
 
-        visitors = Number(visitors)+1;
+// Success / Error Notification
+const toast = document.getElementById("toast");
 
-    }
 
-    /*
-    Save
-    */
+/* ==========================================================
+                GLOBAL VARIABLES
+========================================================== */
 
-    localStorage.setItem(
+// Firestore Document ID
+let editProjectId = null;
 
-        "visitors",
+// Delete ID
+let deleteProjectId = null;
 
-        visitors
+// Image URL
+let projectImageUrl = "";
 
-    );
+// Sabhi Projects Store Honge
+let projects = [];
 
-    /*
-    Card Update
-    */
 
-    totalVisitors.innerHTML = visitors;
+/* ==========================================================
+                APP START
+========================================================== */
 
-}
+console.log("=================================");
 
+console.log("Admin Dashboard Started");
 
+console.log("Firebase Connected Successfully");
 
-/* =====================================================
-        RESUME DOWNLOAD
-=====================================================
+console.log("=================================");/* ==========================================================
+            PART 3.2
+        ADD PROJECT TO FIRESTORE
+========================================================== */
 
-Demo Value
 
-Baad me Firestore se karenge.
-*/
+/* ==========================================================
+            PROJECT FORM SUBMIT
+========================================================== */
 
-function loadResumeDownloads(){
+projectForm.addEventListener("submit", async (e) => {
 
-    let download = localStorage.getItem(
+    // Form Reload Hone Se Rokna
+    e.preventDefault();
 
-        "resume"
 
-    );
+    /* ==========================================
+                GET INPUT VALUES
+    ========================================== */
 
-    if(download===null){
-
-        download = 0;
-
-    }
-
-    resumeDownloads.innerHTML = download;
-
-}
-
-
-
-/* =====================================================
-        LOAD DASHBOARD
-=====================================================
-
-Page Load hote hi
-
-Saare Cards Update.
-*/
-
-window.addEventListener("load",()=>{
-
-    loadProjectCount();
-
-    loadMessageCount();
-
-    loadVisitorCount();
-
-    loadResumeDownloads();
-
-});
-
-
-
-/* =====================================================
-        ANIMATED COUNTER
-=====================================================
-
-Card me Number
-
-0 se Start hokar
-
-Final Number tak jayega.
-*/
-
-function animateCounter(
-
-element,
-
-target
-
-){
-
-    let start = 0;
-
-    let speed = 20;
-
-
-    const timer = setInterval(()=>{
-
-        start++;
-
-        element.innerHTML = start;
-
-        if(start>=target){
-
-            clearInterval(timer);
-
-        }
-
-    },speed);
-
-}
-
-
-/* =====================================================
-            PROJECT FORM
-=====================================================
-
-HTML Form ko JavaScript me select kar rahe hain.
-*/
-
-const projectForm = document.querySelector("#project-form");
-
-const titleInput = document.querySelector("#project-title");
-
-const categoryInput = document.querySelector("#project-category");
-
-const descriptionInput = document.querySelector("#project-description");
-
-const githubInput = document.querySelector("#github-link");
-
-const liveInput = document.querySelector("#live-link");
-
-const projectList = document.querySelector("#project-list");
-
-
-/* =====================================================
-            FORM SUBMIT
-===================================================== */
-
-projectForm.addEventListener("submit",(event)=>{
-
-    /*
-    Page Refresh Stop
-    */
-
-    event.preventDefault();
-
-
-    /*
-    Input Values
-    */
-
+    // Input ki value lekar extra spaces remove karna
     const title = titleInput.value.trim();
 
     const category = categoryInput.value.trim();
@@ -509,13 +168,14 @@ projectForm.addEventListener("submit",(event)=>{
     const live = liveInput.value.trim();
 
 
-    /*
-    Validation
-    */
+    /* ==========================================
+                SIMPLE VALIDATION
+    ========================================== */
 
-    if(title===""){
+    // Agar title empty hai
+    if(title === ""){
 
-        alert("Project Title Required");
+        showToast("Project title is required","error");
 
         titleInput.focus();
 
@@ -523,9 +183,10 @@ projectForm.addEventListener("submit",(event)=>{
 
     }
 
-    if(category===""){
+    // Agar category empty hai
+    if(category === ""){
 
-        alert("Category Required");
+        showToast("Category is required","error");
 
         categoryInput.focus();
 
@@ -533,9 +194,10 @@ projectForm.addEventListener("submit",(event)=>{
 
     }
 
-    if(description===""){
+    // Agar description empty hai
+    if(description === ""){
 
-        alert("Description Required");
+        showToast("Description is required","error");
 
         descriptionInput.focus();
 
@@ -544,189 +206,470 @@ projectForm.addEventListener("submit",(event)=>{
     }
 
 
-    /*
-    Button Disable
-    */
+    /* ==========================================
+                LOADING START
+    ========================================== */
 
-    const button = projectForm.querySelector("button");
+    loadingScreen.classList.add("show");
 
-    button.disabled = true;
+    saveButton.disabled = true;
 
-    button.innerHTML = "Saving...";
-
-
-    /*
-    Firestore Save
-    */
-
-    db.collection("projects")
-
-    .add({
-
-        title:title,
-
-        category:category,
-
-        description:description,
-
-        github:github,
-
-        live:live,
-
-        createdAt:new Date()
-
-    })
-
-    .then(()=>{
-
-        /*
-        Success
-        */
-
-        alert("Project Added Successfully ✅");
+    saveButton.innerText = "Saving...";
 
 
-        /*
-        Form Reset
-        */
+    try{
 
-        projectForm.reset();
+        /* ======================================
+                NEW PROJECT OBJECT
+        ====================================== */
 
+        const newProject = {
 
-        /*
-        Button Restore
-        */
+            // Project Title
+            title:title,
 
-        button.disabled=false;
+            // Category
+            category:category,
 
-        button.innerHTML="Add Project";
+            // Description
+            description:description,
 
+            // GitHub Link
+            github:github,
 
-        /*
-        Reload Projects
-        */
+            // Live Website
+            live:live,
 
-        loadProjects();
+            // Image
+            image:"assets/images/default-project.jpg",
 
-    })
+            // Time
+            createdAt:new Date()
 
-    .catch((error)=>{
-
-        console.log(error);
-
-        alert("Project Save Failed ❌");
-
-        button.disabled=false;
-
-        button.innerHTML="Add Project";
-
-    });
-
-});
-/* =====================================================
-            LOAD ALL PROJECTS
-=====================================================
-
-Ye function Firestore se saare projects
-real-time me read karega.
-*/
-
-function loadProjects(){
-
-    /*
-    Firestore Listener
-    */
-
-    db.collection("projects")
-
-    .orderBy("createdAt","desc")
-
-    .onSnapshot((snapshot)=>{
-
-        /*
-        Purane Cards Remove
-        */
-
-        projectList.innerHTML="";
+        };
 
 
-        /*
-        Agar koi Project nahi hai
-        */
+        /* ======================================
+                EDIT OR ADD
+        ====================================== */
 
-        if(snapshot.empty){
+        if(editProjectId){
 
-            projectList.innerHTML=`
+            // Existing Project Update
 
-            <div class="no-project">
+            await db
+            .collection("projects")
+            .doc(editProjectId)
+            .update(newProject);
 
-                No Project Found
+            showToast("Project Updated Successfully","success");
 
-            </div>
+            editProjectId = null;
 
-            `;
+            saveButton.innerText = "Add Project";
 
-            return;
+        }else{
+
+            // New Project Add
+
+            await db
+            .collection("projects")
+            .add(newProject);
+
+            showToast("Project Added Successfully","success");
 
         }
 
 
-        /*
-        Sabhi Documents Loop
-        */
+        /* ======================================
+                FORM RESET
+        ====================================== */
 
-        snapshot.forEach((doc)=>{
-
-            /*
-            Firestore Data
-            */
-
-            const project=doc.data();
+        projectForm.reset();
 
 
-            /*
-            Project Card
-            */
+    }catch(error){
 
-            projectList.innerHTML+=`
+        console.error(error);
 
-            <div class="project-card">
+        showToast(error.message,"error");
 
-                <h3>${project.title}</h3>
+    }
 
-                <p><strong>Category :</strong>
 
-                ${project.category}</p>
+    /* ==========================================
+                LOADING STOP
+    ========================================== */
 
-                <p>${project.description}</p>
+    loadingScreen.classList.remove("show");
 
-                <div class="project-buttons">
+    saveButton.disabled = false;
 
-                    <button
+    saveButton.innerText = "Add Project";
 
-                    class="edit-btn"
+});/* ==========================================================
+                PART 3.3
+        REALTIME PROJECT LIST (onSnapshot)
+========================================================== */
 
-                    onclick="editProject('${doc.id}')">
 
-                    Edit
+/* ==========================================================
+                LOAD ALL PROJECTS
+========================================================== */
 
-                    </button>
+db.collection("projects")
 
-                    <button
+.orderBy("createdAt","desc")
 
-                    class="delete-btn"
+.onSnapshot((snapshot)=>{
 
-                    onclick="deleteProject('${doc.id}')">
+    // Purana Array Empty
+    projects=[];
 
-                    Delete
+    // Purana HTML Empty
+    projectList.innerHTML="";
 
-                    </button>
 
-                </div>
+
+    /* ==========================================
+            Firestore Data Read
+    ========================================== */
+
+    snapshot.forEach((doc)=>{
+
+        // Firestore Data
+        const project={
+
+            id:doc.id,
+
+            ...doc.data()
+
+        };
+
+        // Array Me Store
+        projects.push(project);
+
+    });
+
+
+
+    /* ==========================================
+            Dashboard Count
+    ========================================== */
+
+    totalProjects.innerText=projects.length;
+
+
+
+    /* ==========================================
+            Empty Project
+    ========================================== */
+
+    if(projects.length===0){
+
+        projectList.innerHTML=`
+
+        <div class="no-project">
+
+            <i class="fa-solid fa-folder-open"></i>
+
+            <h2>No Projects Found</h2>
+
+            <p>Add Your First Project</p>
+
+        </div>
+
+        `;
+
+        return;
+
+    }
+
+
+
+    /* ==========================================
+            Create Cards
+    ========================================== */
+
+    projects.forEach((project)=>{
+
+        const card=document.createElement("div");
+
+        card.className="project-card";
+
+
+
+        card.innerHTML=`
+
+        <img src="${project.image}" alt="${project.title}">
+
+        <div class="project-content">
+
+            <h2 class="project-title">
+
+                ${project.title}
+
+            </h2>
+
+            <span class="project-category">
+
+                ${project.category}
+
+            </span>
+
+            <p class="project-description">
+
+                ${project.description}
+
+            </p>
+
+            <div class="project-buttons">
+
+                <a
+
+                href="${project.github}"
+
+                target="_blank"
+
+                class="github-btn">
+
+                <i class="fa-brands fa-github"></i>
+
+                GitHub
+
+                </a>
+
+                <a
+
+                href="${project.live}"
+
+                target="_blank"
+
+                class="live-btn">
+
+                <i class="fa-solid fa-globe"></i>
+
+                Live Demo
+
+                </a>
+
+                <button
+
+                class="edit-btn"
+
+                data-id="${project.id}">
+
+                <i class="fa-solid fa-pen"></i>
+
+                Edit
+
+                </button>
+
+                <button
+
+                class="delete-btn"
+
+                data-id="${project.id}">
+
+                <i class="fa-solid fa-trash"></i>
+
+                Delete
+
+                </button>
 
             </div>
 
-            `;
+        </div>
+
+        `;
+
+
+
+        // Card Add
+
+        projectList.appendChild(card);
+
+    });
+
+
+
+    /* ==========================================
+            Events
+    ========================================== */
+
+    setupEditButtons();
+
+    setupDeleteButtons();
+
+});/* ==========================================================
+                PART 3.4
+                EDIT PROJECT
+========================================================== */
+
+/* ==========================================================
+        EDIT BUTTON FUNCTION
+========================================================== */
+
+function setupEditButtons(){
+
+    // Sabhi Edit Buttons Select Karo
+    const editButtons = document.querySelectorAll(".edit-btn");
+
+
+    // Har Button Par Event Lagao
+    editButtons.forEach((button)=>{
+
+
+        button.addEventListener("click",async()=>{
+
+
+            // Button Se Project ID Nikalo
+            const projectId = button.dataset.id;
+
+
+            try{
+
+                // Firestore Se Document Read Karo
+                const doc = await db
+                .collection("projects")
+                .doc(projectId)
+                .get();
+
+
+                // Agar Document Exist Nahi Hai
+                if(!doc.exists){
+
+                    showToast(
+                        "Project Not Found",
+                        "error"
+                    );
+
+                    return;
+
+                }
+
+
+                // Firestore Data
+                const project = doc.data();
+
+
+                /* =====================================
+                        FORM FILL
+                ===================================== */
+
+                // Title
+                titleInput.value =
+                project.title || "";
+
+
+                // Category
+                categoryInput.value =
+                project.category || "";
+
+
+                // Description
+                descriptionInput.value =
+                project.description || "";
+
+
+                // GitHub
+                githubInput.value =
+                project.github || "";
+
+
+                // Live Website
+                liveInput.value =
+                project.live || "";
+
+
+                // Image URL
+                projectImageUrl =
+                project.image || "";
+
+
+                /* =====================================
+                        EDIT MODE
+                ===================================== */
+
+                // Global Variable
+                editProjectId = projectId;
+
+
+                // Hidden Input
+                editIdInput.value =
+                projectId;
+
+
+                // Button Text Change
+                saveButton.innerHTML =
+
+                `<i class="fa-solid fa-pen"></i>
+                Update Project`;
+
+
+                // Form Ke Top Par Scroll
+                projectForm.scrollIntoView({
+
+                    behavior:"smooth"
+
+                });
+
+
+                // Success Message
+                showToast(
+
+                    "Project Ready For Edit",
+
+                    "info"
+
+                );
+
+            }
+
+            catch(error){
+
+                console.log(error);
+
+                showToast(
+
+                    error.message,
+
+                    "error"
+
+                );
+
+            }
+
+        });
+
+    });
+
+}/* ==========================================================
+                PART 3.5
+                DELETE PROJECT
+========================================================== */
+
+/* ==========================================================
+        DELETE BUTTON FUNCTION
+========================================================== */
+
+function setupDeleteButtons(){
+
+    // Sabhi Delete Buttons Select Karo
+    const deleteButtons = document.querySelectorAll(".delete-btn");
+
+
+    // Har Button Par Event Lagao
+    deleteButtons.forEach((button)=>{
+
+
+        button.addEventListener("click",()=>{
+
+            // Project ID Store Karo
+            deleteProjectId = button.dataset.id;
+
+            // Modal Show Karo
+            deleteModal.classList.add("show");
 
         });
 
@@ -735,163 +678,307 @@ function loadProjects(){
 }
 
 
+/* ==========================================================
+        CONFIRM DELETE
+========================================================== */
 
-/* =====================================================
-            DELETE PROJECT
-=====================================================
+confirmDeleteBtn.addEventListener("click",async()=>{
 
-Delete Button click hone par
-Firestore se project delete hoga.
-*/
+    // Agar ID Nahi Hai To Return
+    if(!deleteProjectId){
 
-function deleteProject(id){
-
-    /*
-    Confirmation
-    */
-
-    const result=confirm(
-        "Kya aap Project Delete karna chahte hain?"
-    );
-    /*
-    Cancel
-    */
-    if(!result){
         return;
+
     }
-    /*
-    Delete
-    */
-    db.collection("projects")
-    .doc(id)
-    .delete()
-    .then(()=>{
-        alert(
-            "Project Deleted Successfully ✅"
+
+    try{
+
+        /* ======================================
+                LOADING START
+        ====================================== */
+
+        loadingScreen.classList.add("show");
+
+
+        /* ======================================
+                DELETE FROM FIRESTORE
+        ====================================== */
+
+        await db
+
+        .collection("projects")
+
+        .doc(deleteProjectId)
+
+        .delete();
+
+
+        /* ======================================
+                SUCCESS
+        ====================================== */
+
+        showToast(
+
+            "Project Deleted Successfully",
+
+            "success"
+
         );
-    })
-    .catch((error)=>{
+
+
+        /* ======================================
+                RESET
+        ====================================== */
+
+        deleteProjectId = null;
+
+        deleteModal.classList.remove("show");
+
+    }
+
+    catch(error){
+
         console.log(error);
-        alert(
-            "Delete Failed ❌"
+
+        showToast(
+
+            error.message,
+
+            "error"
+
         );
-    });
-}
-/* ======EDIT PROJECT========
 
-Abhi sirf Demo.
-Next Part me complete Edit banega.
-*/
-function editProject(id){
-    console.log(
-        "Edit Project ID :",
-        id
-    );
-}
-/* ====== PAGE LOAD======
+    }
 
-Dashboard open hote hi
-Projects Load.
-*/
+    finally{
+
+        /* ======================================
+                LOADING STOP
+        ====================================== */
+
+        loadingScreen.classList.remove("show");
+
+    }
+
+});
+
+
+/* ==========================================================
+        CANCEL DELETE
+========================================================== */
+
+cancelDeleteBtn.addEventListener("click",()=>{
+
+    // Modal Hide
+    deleteModal.classList.remove("show");
+
+    // ID Reset
+    deleteProjectId = null;
+
+});
+
+
+/* ==========================================================
+        CLOSE MODAL OUTSIDE CLICK
+========================================================== */
+
+deleteModal.addEventListener("click",(e)=>{
+
+    // Agar Background Click Hua
+    if(e.target===deleteModal){
+
+        deleteModal.classList.remove("show");
+
+        deleteProjectId = null;
+
+    }
+
+});/* ==========================================================
+                PART 3.6
+        DASHBOARD FINAL FEATURES
+========================================================== */
+
+
+/* ==========================================================
+                TOAST FUNCTION
+========================================================== */
+
+function showToast(message,type="success"){
+
+    // Purani Class Remove
+    toast.className="";
+
+    // Toast ID Wapas Add
+    toast.id="toast";
+
+    // Success / Error / Warning / Info
+    toast.classList.add(type);
+
+    // Message Set
+    toast.innerText=message;
+
+    // Toast Show
+    toast.classList.add("show");
+
+    // 3 Second Baad Hide
+    setTimeout(()=>{
+
+        toast.classList.remove("show");
+
+    },3000);
+
+}
+
+
+/* ==========================================================
+                DARK MODE
+========================================================== */
+
+// Browser Me Saved Theme Read
+const savedTheme=localStorage.getItem("theme");
+
+// Agar Dark Theme Hai
+if(savedTheme==="dark"){
+
+    document.body.classList.add("dark-mode");
+
+    themeBtn.innerHTML="☀️";
+
+}
+
+
+// Theme Button Click
+themeBtn.addEventListener("click",()=>{
+
+    // Dark Mode Toggle
+    document.body.classList.toggle("dark-mode");
+
+
+    // Dark Mode Active
+    if(document.body.classList.contains("dark-mode")){
+
+        localStorage.setItem("theme","dark");
+
+        themeBtn.innerHTML="☀️";
+
+    }
+
+    // Light Mode
+    else{
+
+        localStorage.setItem("theme","light");
+
+        themeBtn.innerHTML="🌙";
+
+    }
+
+});
+
+
+/* ==========================================================
+                SIDEBAR TOGGLE
+========================================================== */
+
+menuBtn.addEventListener("click",()=>{
+
+    sidebar.classList.toggle("show");
+
+});
+
+
+/* ==========================================================
+                LOGOUT
+========================================================== */
+
+logoutBtn.addEventListener("click",async()=>{
+
+    // Confirm
+    const confirmLogout=
+
+    confirm("Are you sure you want to logout?");
+
+    if(!confirmLogout){
+
+        return;
+
+    }
+
+    try{
+
+        // Firebase Logout
+        await firebase.auth().signOut();
+
+        // Success
+        showToast(
+
+            "Logout Successful",
+
+            "success"
+
+        );
+
+        // Login Page
+        setTimeout(()=>{
+
+            window.location.href="login.html";
+
+        },1000);
+
+    }
+
+    catch(error){
+
+        console.log(error);
+
+        showToast(
+
+            error.message,
+
+            "error"
+
+        );
+
+    }
+
+});
+
+
+/* ==========================================================
+                LOADING FUNCTIONS
+========================================================== */
+
+function showLoading(){
+
+    loadingScreen.classList.add("show");
+
+}
+
+function hideLoading(){
+
+    loadingScreen.classList.remove("show");
+
+}
+
+
+/* ==========================================================
+                APP START
+========================================================== */
+
 window.addEventListener("load",()=>{
-    loadProjects();
+
+    // Loading Hide
+    hideLoading();
+
+    // Dashboard Ready
+    console.log("Dashboard Ready");
+
+    // Welcome Message
+    showToast(
+
+        "Welcome Admin",
+
+        "info"
+
+    );
+
 });
-/* =====EDIT PROJECT====
-
-Global Variable
-Isme current edit hone wale
-Project ki ID store hogi.
-*/
-let editProjectId = null;
-/* =====EDIT BUTTON=== */
-
-function editProject(id){
-    /*
-    Firestore se Data Read
-    */
-    db.collection("projects")
-    .doc(id)
-    .get()
-    .then((doc)=>{
-        /*
-        Data
-        */
-        const project = doc.data();
-        /*
-        ID Save
-        */
-        editProjectId = id;
-        /*
-        Form Fill
-        */
-        titleInput.value = project.title;
-        categoryInput.value = project.category;
-        descriptionInput.value = project.description;
-        githubInput.value = project.github;
-        liveInput.value = project.live;
-      /*
-        Button Change
-        */
-        projectForm.querySelector("button").innerHTML="Update Project";
-    });
-}
-/* =====================================================
-            UPDATE PROJECT
-===================================================== */
-function updateProject(){
-    db.collection("projects")
-    .doc(editProjectId)
-    .update({
-        title:titleInput.value.trim(),
-        category:categoryInput.value.trim(),
-        description:descriptionInput.value.trim(),
-        github:githubInput.value.trim(),
-        live:liveInput.value.trim()
-    })
-    .then(()=>{
-        alert("Project Updated Successfully ✅");
-        projectForm.reset();
-        editProjectId = null;
-        projectForm.querySelector("button").innerHTML="Add Project";
-    })
-    .catch((error)=>{
-        console.log(error);
-    });
-}
-/* ===FORM SUBMIT UPDATE CHECK======
-
-Project Add karna hai ya Update?
-*/
-projectForm.addEventListener("submit",(event)=>{
-    /*
-    Agar Edit Mode hai
-    */
-    if(editProjectId){
-        event.preventDefault();
-        updateProject();
-    }
-});
-
-/* ======SEARCH PROJECT=== */
-const searchInput = document.querySelector("#search-project");
-if(searchInput){
-searchInput.addEventListener("keyup",()=>{
-const value = searchInput.value.toLowerCase();
-const cards = document.querySelectorAll(".project-card");
-cards.forEach((card)=>{
-const text = card.innerText.toLowerCase();
-if(text.includes(value)){
-card.style.display="block";
-}
-else{
-card.style.display="none";
-}
-});
-});
-}
-
-/* =====================================================
-            LOG
-===================================================== */
-
-console.log("Project System Ready 🚀");

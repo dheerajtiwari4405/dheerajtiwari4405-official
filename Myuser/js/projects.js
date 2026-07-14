@@ -29,54 +29,32 @@ LOAD PROJECTS FROM FIRESTORE
 db.collection("projects")
 .orderBy("createdAt", "desc")
 .onSnapshot((snapshot)=>{
-
     // Array ko khali karo
     projects = [];
-
     // Firestore ka data array me dalo
     snapshot.forEach((doc)=>{
-
         projects.push({
-
             id: doc.id,
-
             ...doc.data()
-
         });
-
     });
-
     // Website par cards dikhao
     displayProjects(projects);
-
 });
 // Website load hote hi Firestore se data lao
-
 db.collection("projects")
 .onSnapshot((snapshot)=>{
-
     // Purana array khali karo
-
     projects.length = 0;
-
     // Firestore ka data array me dalo
-
     snapshot.forEach((doc)=>{
-
         projects.push({
-
             id: doc.id,
-
             ...doc.data()
-
         });
-
     });
-
     // Cards dobara banao
-
     displayProjects(projects);
-
 });
 
 /*
@@ -113,6 +91,8 @@ function displayProjects(projectList){
     projectContainer.innerHTML = "";
     /*Loop Array ke har project par chalega.*/
     projectList.forEach((project)=>{
+        console.log(project);
+        
         /*Card Create createElement() Browser me naya div banata hai. */
         const card = document.createElement("div");
         /*CSS Class card ko project-card class de rahe hain.*/

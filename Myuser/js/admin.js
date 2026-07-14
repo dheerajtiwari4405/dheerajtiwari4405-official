@@ -24,7 +24,7 @@ form.addEventListener("submit",(event)=>{
         title:titleInput.value,
         description:descriptionInput.value,
         category:categoryInput.value,
-        demo:demoInput.value,
+        live:liveInput.value,
         github:githubInput.value
     };
     /*

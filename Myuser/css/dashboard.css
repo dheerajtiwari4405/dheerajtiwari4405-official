@@ -1,75 +1,13 @@
-/* ======================================================
+/* ==========================================================
                     GOOGLE FONT
-====================================================== */
+========================================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
-
-
-/* ======================================================
-                    ROOT VARIABLES
-====================================================== */
-
-:root{
-
-    --primary:#2563eb;
-
-    --primary-hover:#1d4ed8;
-
-    --secondary:#06b6d4;
-
-    --success:#16a34a;
-
-    --danger:#dc2626;
-
-    --warning:#f59e0b;
-
-    --white:#ffffff;
-
-    --black:#111827;
-
-    --text:#374151;
-
-    --border:#e5e7eb;
-
-    --background:#f8fafc;
-
-    --card:#ffffff;
-
-    --sidebar:#0f172a;
-
-    --sidebar-hover:#1e293b;
-
-    --shadow:0 15px 40px rgba(0,0,0,.08);
-
-}
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
 
 
-
-/* ======================================================
-                    DARK MODE
-====================================================== */
-
-body.dark{
-
-    --background:#020617;
-
-    --card:#0f172a;
-
-    --black:#ffffff;
-
-    --text:#cbd5e1;
-
-    --border:#334155;
-
-    --shadow:0 20px 45px rgba(0,0,0,.45);
-
-}
-
-
-
-/* ======================================================
-                    RESET
-====================================================== */
+/* ==========================================================
+                    CSS RESET
+========================================================== */
 
 *{
 
@@ -79,115 +17,136 @@ body.dark{
 
     box-sizing:border-box;
 
-    font-family:"Poppins",sans-serif;
+}
+
+
+/* ==========================================================
+                    ROOT VARIABLES
+========================================================== */
+
+:root{
+
+    --primary:#2563eb;
+
+    --secondary:#1e40af;
+
+    --success:#16a34a;
+
+    --danger:#dc2626;
+
+    --warning:#f59e0b;
+
+    --dark:#0f172a;
+
+    --light:#ffffff;
+
+    --gray:#64748b;
+
+    --border:#e2e8f0;
+
+    --shadow:0 10px 30px rgba(0,0,0,.08);
+
+    --radius:14px;
 
 }
 
 
-
-/* ======================================================
+/* ==========================================================
                     BODY
-====================================================== */
+========================================================== */
 
 body{
 
-    background:var(--background);
+    font-family:"Poppins",sans-serif;
 
-    color:var(--text);
+    background:#f5f7fb;
+
+    color:#222;
 
     display:flex;
 
-    min-height:100vh;
-
 }
 
 
-
-/* ======================================================
+/* ==========================================================
                     SIDEBAR
-====================================================== */
+========================================================== */
 
 .sidebar{
 
-    width:280px;
+    width:260px;
 
-    height:100vh;
+    min-height:100vh;
 
-    background:var(--sidebar);
+    background:var(--dark);
+
+    color:#fff;
 
     position:fixed;
 
-    top:0;
-
     left:0;
 
-    overflow-y:auto;
+    top:0;
 
-    transition:.3s;
-
-    box-shadow:var(--shadow);
+    overflow:auto;
 
 }
 
 
-
-/* ======================================================
+/* ==========================================================
                     LOGO
-====================================================== */
+========================================================== */
 
 .logo{
 
-    padding:30px;
+    padding:25px;
 
     text-align:center;
 
-    border-bottom:1px solid rgba(255,255,255,.08);
-
 }
+
 
 .logo img{
 
     width:90px;
 
-    margin-bottom:15px;
+    height:90px;
+
+    object-fit:cover;
+
+    border-radius:50%;
+
+    border:4px solid white;
 
 }
+
 
 .logo h2{
 
-    color:white;
-
-    font-size:26px;
-
-    font-weight:700;
+    margin-top:12px;
 
 }
 
 
-
-/* ======================================================
+/* ==========================================================
                     NAVIGATION
-====================================================== */
+========================================================== */
 
-.sidebar nav{
-
-    margin-top:20px;
-
-}
-
-.sidebar nav ul{
+.sidebar ul{
 
     list-style:none;
 
 }
 
-.sidebar nav ul li{
 
-    margin:8px 15px;
+.sidebar li{
+
+    margin:8px;
 
 }
 
-.sidebar nav ul li a{
+
+.sidebar a{
 
     display:flex;
 
@@ -195,128 +154,53 @@ body{
 
     gap:15px;
 
+    color:white;
+
     text-decoration:none;
 
-    color:#cbd5e1;
+    padding:14px;
 
-    padding:15px 20px;
-
-    border-radius:12px;
+    border-radius:10px;
 
     transition:.3s;
 
-    font-size:16px;
+}
 
-    font-weight:500;
+
+.sidebar a:hover{
+
+    background:#2563eb;
 
 }
 
 
+.sidebar li.active a{
 
-/* ======================================================
-                    NAV ICON
-====================================================== */
-
-.sidebar nav ul li a i{
-
-    width:22px;
-
-    text-align:center;
-
-    font-size:18px;
+    background:#2563eb;
 
 }
 
 
-
-/* ======================================================
-                    HOVER
-====================================================== */
-
-.sidebar nav ul li a:hover{
-
-    background:var(--sidebar-hover);
-
-    color:white;
-
-    transform:translateX(8px);
-
-}
-
-
-
-/* ======================================================
-                    ACTIVE MENU
-====================================================== */
-
-.sidebar nav ul li.active a{
-
-    background:linear-gradient(135deg,#2563eb,#1d4ed8);
-
-    color:white;
-
-}
-
-
-
-/* ======================================================
-                SCROLLBAR
-====================================================== */
-
-.sidebar::-webkit-scrollbar{
-
-    width:8px;
-
-}
-
-.sidebar::-webkit-scrollbar-thumb{
-
-    background:#334155;
-
-    border-radius:20px;
-
-}
-
-.sidebar::-webkit-scrollbar-track{
-
-    background:transparent;
-
-}
-/* ======================================================
-                MAIN CONTENT
-====================================================== */
+/* ==========================================================
+                    MAIN CONTENT
+========================================================== */
 
 .main-content{
 
-    flex:1;
+    margin-left:260px;
 
-    margin-left:280px;
+    width:calc(100% - 260px);
 
-    min-height:100vh;
-
-    background:var(--background);
-
-    transition:.3s;
+    padding:30px;
 
 }
 
 
-
-/* ======================================================
-                HEADER
-====================================================== */
+/* ==========================================================
+                    HEADER
+========================================================== */
 
 .header{
-
-    position:sticky;
-
-    top:0;
-
-    left:0;
-
-    width:100%;
-
-    background:var(--card);
 
     display:flex;
 
@@ -324,143 +208,43 @@ body{
 
     align-items:center;
 
-    padding:20px 30px;
+    background:white;
 
-    border-bottom:1px solid var(--border);
+    padding:18px 25px;
+
+    border-radius:var(--radius);
 
     box-shadow:var(--shadow);
 
-    z-index:100;
+    margin-bottom:30px;
 
 }
 
-
-
-/* ======================================================
-                HEADER TITLE
-====================================================== */
-
-.header h1{
-
-    font-size:30px;
-
-    color:var(--black);
-
-    font-weight:700;
-
-}
-
-
-
-/* ======================================================
-                HEADER RIGHT
-====================================================== */
 
 .header-right{
 
     display:flex;
-
-    align-items:center;
 
     gap:15px;
 
 }
 
 
+/* ==========================================================
+                    HEADER BUTTONS
+========================================================== */
 
-/* ======================================================
-                MENU BUTTON
-====================================================== */
-
-#menu-btn{
-
-    display:none;
-
-    width:50px;
-
-    height:50px;
+.header button{
 
     border:none;
-
-    border-radius:12px;
 
     background:var(--primary);
 
     color:white;
 
-    cursor:pointer;
+    padding:10px 18px;
 
-    font-size:20px;
-
-    transition:.3s;
-
-}
-
-#menu-btn:hover{
-
-    background:var(--primary-hover);
-
-    transform:scale(1.05);
-
-}
-
-
-
-/* ======================================================
-                THEME BUTTON
-====================================================== */
-
-#theme-btn{
-
-    width:50px;
-
-    height:50px;
-
-    border:none;
-
-    border-radius:50%;
-
-    background:var(--card);
-
-    color:var(--black);
-
-    box-shadow:var(--shadow);
-
-    cursor:pointer;
-
-    font-size:20px;
-
-    transition:.3s;
-
-}
-
-#theme-btn:hover{
-
-    transform:rotate(180deg);
-
-}
-
-
-
-/* ======================================================
-                LOGOUT BUTTON
-====================================================== */
-
-#logout-btn{
-
-    padding:14px 28px;
-
-    border:none;
-
-    border-radius:12px;
-
-    background:linear-gradient(135deg,#dc2626,#ef4444);
-
-    color:white;
-
-    font-size:15px;
-
-    font-weight:600;
+    border-radius:8px;
 
     cursor:pointer;
 
@@ -468,238 +252,118 @@ body{
 
 }
 
-#logout-btn:hover{
 
-    transform:translateY(-3px);
+.header button:hover{
 
-    box-shadow:0 12px 25px rgba(220,38,38,.35);
+    background:var(--secondary);
 
-}
+}/* ==========================================================
+                    DASHBOARD SECTION
+========================================================== */
 
-#logout-btn:active{
+#dashboard{
 
-    transform:scale(.97);
-
-}
-
-
-
-/* ======================================================
-                SECTION
-====================================================== */
-
-section{
-
-    padding:35px;
+    margin-bottom:40px;
 
 }
 
-
-
-/* ======================================================
-                SECTION TITLE
-====================================================== */
-
-section h2{
+#dashboard h2{
 
     font-size:28px;
 
-    color:var(--black);
-
     margin-bottom:25px;
 
-}
-
-
-
-/* ======================================================
-                PAGE ANIMATION
-====================================================== */
-
-.main-content{
-
-    animation:fadeIn .6s ease;
-
-}
-
-@keyframes fadeIn{
-
-    from{
-
-        opacity:0;
-
-        transform:translateY(20px);
-
-    }
-
-    to{
-
-        opacity:1;
-
-        transform:translateY(0);
-
-    }
+    color:var(--dark);
 
 }
 
 
-
-/* ======================================================
-                BUTTON COMMON STYLE
-====================================================== */
-
-button{
-
-    font-family:"Poppins",sans-serif;
-
-}
-
-
-
-/* ======================================================
-                TEXT SELECTION
-====================================================== */
-
-::selection{
-
-    background:var(--primary);
-
-    color:#fff;
-
-}
-/* ======================================================
-                    DASHBOARD CARDS
-====================================================== */
+/* ==========================================================
+                    DASHBOARD CARDS CONTAINER
+========================================================== */
 
 .cards{
 
     display:grid;
 
-    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
 
     gap:25px;
 
 }
 
 
-
-/* ======================================================
+/* ==========================================================
                     SINGLE CARD
-====================================================== */
+========================================================== */
 
 .card{
 
-    background:var(--card);
+    background:var(--light);
 
-    border-radius:20px;
+    border-radius:var(--radius);
 
-    padding:30px;
+    padding:25px;
 
     box-shadow:var(--shadow);
 
-    border:1px solid var(--border);
-
-    position:relative;
-
-    overflow:hidden;
+    transition:.3s;
 
     cursor:pointer;
 
-    transition:.35s;
+    border:1px solid var(--border);
 
 }
 
 
-
-/* ======================================================
-                    TOP BORDER EFFECT
-====================================================== */
-
-.card::before{
-
-    content:"";
-
-    position:absolute;
-
-    top:0;
-
-    left:0;
-
-    width:100%;
-
-    height:5px;
-
-    background:linear-gradient(90deg,var(--primary),var(--secondary));
-
-}
-
-
-
-/* ======================================================
+/* ==========================================================
                     CARD HOVER
-====================================================== */
+========================================================== */
 
 .card:hover{
 
-    transform:translateY(-10px);
-
-    box-shadow:0 20px 45px rgba(0,0,0,.18);
+    transform:translateY(-8px);
 
 }
 
 
-
-/* ======================================================
-                    ICON
-====================================================== */
+/* ==========================================================
+                    CARD ICON
+========================================================== */
 
 .card i{
 
-    width:70px;
+    font-size:42px;
 
-    height:70px;
-
-    display:flex;
-
-    justify-content:center;
-
-    align-items:center;
-
-    border-radius:50%;
-
-    font-size:28px;
-
-    color:white;
+    color:var(--primary);
 
     margin-bottom:20px;
 
 }
 
 
-
-/* ======================================================
+/* ==========================================================
                     CARD TITLE
-====================================================== */
+========================================================== */
 
 .card h3{
 
     font-size:20px;
 
-    color:var(--black);
+    margin-bottom:10px;
 
-    margin-bottom:15px;
+    color:var(--dark);
 
 }
 
 
-
-/* ======================================================
+/* ==========================================================
                     CARD NUMBER
-====================================================== */
+========================================================== */
 
 .card p{
 
-    font-size:36px;
+    font-size:34px;
 
     font-weight:700;
 
@@ -708,54 +372,1104 @@ button{
 }
 
 
-
-/* ======================================================
-                    CARD COLORS
-====================================================== */
+/* ==========================================================
+                    DIFFERENT ICON COLORS
+========================================================== */
 
 .card:nth-child(1) i{
 
-    background:linear-gradient(135deg,#2563eb,#1d4ed8);
+    color:#2563eb;
 
 }
 
 .card:nth-child(2) i{
 
-    background:linear-gradient(135deg,#10b981,#059669);
+    color:#16a34a;
 
 }
 
 .card:nth-child(3) i{
 
-    background:linear-gradient(135deg,#f59e0b,#d97706);
+    color:#f59e0b;
 
 }
 
 .card:nth-child(4) i{
 
-    background:linear-gradient(135deg,#dc2626,#b91c1c);
+    color:#dc2626;
+
+}
+
+
+/* ==========================================================
+                    CARD LEFT BORDER
+========================================================== */
+
+.card:nth-child(1){
+
+    border-left:6px solid #2563eb;
+
+}
+
+.card:nth-child(2){
+
+    border-left:6px solid #16a34a;
+
+}
+
+.card:nth-child(3){
+
+    border-left:6px solid #f59e0b;
+
+}
+
+.card:nth-child(4){
+
+    border-left:6px solid #dc2626;
+
+}/* ==========================================================
+                    PROJECT SECTION
+========================================================== */
+
+#projects{
+
+    margin-top:50px;
+
+}
+
+#projects h2{
+
+    font-size:28px;
+
+    color:var(--dark);
+
+    margin-bottom:25px;
+
+}
+
+
+/* ==========================================================
+                    PROJECT FORM
+========================================================== */
+
+#project-form{
+
+    background:var(--light);
+
+    padding:30px;
+
+    border-radius:var(--radius);
+
+    box-shadow:var(--shadow);
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:18px;
+
+    border:1px solid var(--border);
+
+}
+
+
+/* ==========================================================
+                    LABEL
+========================================================== */
+
+#project-form label{
+
+    font-size:15px;
+
+    font-weight:600;
+
+    color:var(--dark);
+
+}
+
+
+/* ==========================================================
+                    INPUT
+========================================================== */
+
+#project-form input{
+
+    width:100%;
+
+    padding:15px;
+
+    border:1px solid var(--border);
+
+    border-radius:10px;
+
+    font-size:16px;
+
+    outline:none;
+
+    transition:.3s;
+
+}
+
+
+/* ==========================================================
+                    TEXTAREA
+========================================================== */
+
+#project-form textarea{
+
+    width:100%;
+
+    min-height:150px;
+
+    resize:vertical;
+
+    padding:15px;
+
+    border:1px solid var(--border);
+
+    border-radius:10px;
+
+    font-size:16px;
+
+    outline:none;
+
+    transition:.3s;
+
+}
+
+
+/* ==========================================================
+                    FILE INPUT
+========================================================== */
+
+#project-image{
+
+    padding:12px;
+
+    cursor:pointer;
+
+    background:#f8fafc;
+
+}
+
+
+/* ==========================================================
+                    INPUT FOCUS
+========================================================== */
+
+#project-form input:focus,
+
+#project-form textarea:focus{
+
+    border-color:var(--primary);
+
+    box-shadow:0 0 0 4px rgba(37,99,235,.15);
+
+}
+
+
+/* ==========================================================
+                    PLACEHOLDER
+========================================================== */
+
+#project-form input::placeholder,
+
+#project-form textarea::placeholder{
+
+    color:#94a3b8;
+
+}
+
+
+/* ==========================================================
+                    SUBMIT BUTTON
+========================================================== */
+
+#save-project-btn{
+
+    background:var(--primary);
+
+    color:white;
+
+    border:none;
+
+    padding:16px;
+
+    border-radius:10px;
+
+    font-size:17px;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+
+/* ==========================================================
+                    BUTTON HOVER
+========================================================== */
+
+#save-project-btn:hover{
+
+    background:var(--secondary);
+
+    transform:translateY(-2px);
+
+}
+
+
+/* ==========================================================
+                    BUTTON ACTIVE
+========================================================== */
+
+#save-project-btn:active{
+
+    transform:scale(.98);
+
+}
+
+
+/* ==========================================================
+                    DISABLED BUTTON
+========================================================== */
+
+#save-project-btn:disabled{
+
+    opacity:.6;
+
+    cursor:not-allowed;
+
+}
+
+
+/* ==========================================================
+                    FORM ERROR
+========================================================== */
+
+.input-error{
+
+    border:2px solid var(--danger)!important;
+
+}
+
+
+/* ==========================================================
+                    SUCCESS BORDER
+========================================================== */
+
+.input-success{
+
+    border:2px solid var(--success)!important;
+
+}/* ==========================================================
+                    PROJECT LIST SECTION
+========================================================== */
+
+#project-list{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(340px,1fr));
+
+    gap:25px;
+
+    margin-top:35px;
+
+}
+
+
+/* ==========================================================
+                    PROJECT CARD
+========================================================== */
+
+.project-card{
+
+    background:var(--light);
+
+    border-radius:var(--radius);
+
+    overflow:hidden;
+
+    box-shadow:var(--shadow);
+
+    border:1px solid var(--border);
+
+    transition:.3s;
+
+}
+
+
+/* ==========================================================
+                    CARD HOVER
+========================================================== */
+
+.project-card:hover{
+
+    transform:translateY(-8px);
+
+}
+
+
+/* ==========================================================
+                    PROJECT IMAGE
+========================================================== */
+
+.project-card img{
+
+    width:100%;
+
+    height:220px;
+
+    object-fit:cover;
+
+    display:block;
+
+}
+
+
+/* ==========================================================
+                    CARD BODY
+========================================================== */
+
+.project-content{
+
+    padding:20px;
+
+}
+
+
+/* ==========================================================
+                    PROJECT TITLE
+========================================================== */
+
+.project-title{
+
+    font-size:22px;
+
+    font-weight:700;
+
+    color:var(--dark);
+
+    margin-bottom:12px;
+
+}
+
+
+/* ==========================================================
+                    CATEGORY BADGE
+========================================================== */
+
+.project-category{
+
+    display:inline-block;
+
+    background:var(--primary);
+
+    color:white;
+
+    padding:6px 14px;
+
+    border-radius:30px;
+
+    font-size:13px;
+
+    margin-bottom:18px;
+
+}
+
+
+/* ==========================================================
+                    DESCRIPTION
+========================================================== */
+
+.project-description{
+
+    color:var(--gray);
+
+    line-height:1.7;
+
+    margin-bottom:22px;
+
+}
+
+
+/* ==========================================================
+                    BUTTON AREA
+========================================================== */
+
+.project-buttons{
+
+    display:flex;
+
+    flex-wrap:wrap;
+
+    gap:12px;
+
+}
+
+
+/* ==========================================================
+                    ALL BUTTONS
+========================================================== */
+
+.project-buttons button,
+
+.project-buttons a{
+
+    flex:1;
+
+    text-align:center;
+
+    text-decoration:none;
+
+    border:none;
+
+    padding:12px;
+
+    border-radius:10px;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+    font-size:15px;
+
+    font-weight:600;
+
+}
+
+
+/* ==========================================================
+                    GITHUB BUTTON
+========================================================== */
+
+.github-btn{
+
+    background:#111827;
+
+    color:white;
+
+}
+
+
+.github-btn:hover{
+
+    background:#000;
+
+}
+
+
+/* ==========================================================
+                    LIVE BUTTON
+========================================================== */
+
+.live-btn{
+
+    background:var(--success);
+
+    color:white;
+
+}
+
+
+.live-btn:hover{
+
+    background:#15803d;
+
+}
+
+
+/* ==========================================================
+                    EDIT BUTTON
+========================================================== */
+
+.edit-btn{
+
+    background:#2563eb;
+
+    color:white;
+
+}
+
+
+.edit-btn:hover{
+
+    background:#1d4ed8;
+
+}
+
+
+/* ==========================================================
+                    DELETE BUTTON
+========================================================== */
+
+.delete-btn{
+
+    background:#dc2626;
+
+    color:white;
+
+}
+
+
+.delete-btn:hover{
+
+    background:#b91c1c;
+
+}
+
+
+/* ==========================================================
+                    EMPTY PROJECT
+========================================================== */
+
+.no-project{
+
+    grid-column:1/-1;
+
+    text-align:center;
+
+    background:white;
+
+    padding:60px;
+
+    border-radius:15px;
+
+    box-shadow:var(--shadow);
+
+}
+
+
+.no-project i{
+
+    font-size:70px;
+
+    color:#cbd5e1;
+
+    margin-bottom:20px;
+
+}
+
+
+.no-project h2{
+
+    color:var(--gray);
+
+    margin-bottom:10px;
+
+}
+
+
+.no-project p{
+
+    color:#94a3b8;
+
+}/* ==========================================================
+                    DELETE MODAL
+========================================================== */
+
+.modal{
+
+    position:fixed;
+
+    top:0;
+
+    left:0;
+
+    width:100%;
+
+    height:100vh;
+
+    background:rgba(0,0,0,.55);
+
+    display:none;
+
+    justify-content:center;
+
+    align-items:center;
+
+    z-index:9999;
+
+}
+
+
+/* ==========================================================
+                    SHOW MODAL
+========================================================== */
+
+.modal.show{
+
+    display:flex;
+
+}
+
+
+/* ==========================================================
+                    MODAL BOX
+========================================================== */
+
+.modal-content{
+
+    width:90%;
+
+    max-width:420px;
+
+    background:white;
+
+    padding:30px;
+
+    border-radius:15px;
+
+    text-align:center;
+
+    box-shadow:0 20px 50px rgba(0,0,0,.25);
+
+    animation:popup .3s ease;
+
+}
+
+
+/* ==========================================================
+                    POPUP ANIMATION
+========================================================== */
+
+@keyframes popup{
+
+    from{
+
+        transform:scale(.8);
+
+        opacity:0;
+
+    }
+
+    to{
+
+        transform:scale(1);
+
+        opacity:1;
+
+    }
+
+}
+
+
+/* ==========================================================
+                    MODAL TITLE
+========================================================== */
+
+.modal-content h2{
+
+    color:#dc2626;
+
+    margin-bottom:15px;
+
+}
+
+
+/* ==========================================================
+                    MODAL TEXT
+========================================================== */
+
+.modal-content p{
+
+    color:#64748b;
+
+    line-height:1.6;
+
+    margin-bottom:25px;
+
+}
+
+
+/* ==========================================================
+                    MODAL BUTTON AREA
+========================================================== */
+
+.modal-buttons{
+
+    display:flex;
+
+    gap:15px;
+
+}
+
+
+/* ==========================================================
+                    MODAL BUTTONS
+========================================================== */
+
+.modal-buttons button{
+
+    flex:1;
+
+    border:none;
+
+    padding:14px;
+
+    border-radius:10px;
+
+    cursor:pointer;
+
+    color:white;
+
+    font-size:15px;
+
+    font-weight:600;
+
+    transition:.3s;
+
+}
+
+
+/* ==========================================================
+                    DELETE BUTTON
+========================================================== */
+
+#confirm-delete{
+
+    background:#dc2626;
+
+}
+
+
+#confirm-delete:hover{
+
+    background:#b91c1c;
+
+}
+
+
+/* ==========================================================
+                    CANCEL BUTTON
+========================================================== */
+
+#cancel-delete{
+
+    background:#64748b;
+
+}
+
+
+#cancel-delete:hover{
+
+    background:#475569;
 
 }
 
 
 
-/* ======================================================
-                    CARD ANIMATION
-====================================================== */
+/* ==========================================================
+                    LOADING SCREEN
+========================================================== */
 
-.card{
+#loading-screen{
 
-    animation:cardAnimation .6s ease;
+    position:fixed;
+
+    inset:0;
+
+    background:rgba(255,255,255,.95);
+
+    display:none;
+
+    justify-content:center;
+
+    align-items:center;
+
+    z-index:10000;
 
 }
 
-@keyframes cardAnimation{
+
+/* ==========================================================
+                    SHOW LOADING
+========================================================== */
+
+#loading-screen.show{
+
+    display:flex;
+
+}
+
+
+/* ==========================================================
+                    LOADER
+========================================================== */
+
+.loader{
+
+    width:70px;
+
+    height:70px;
+
+    border:7px solid #e2e8f0;
+
+    border-top:7px solid #2563eb;
+
+    border-radius:50%;
+
+    animation:spin .8s linear infinite;
+
+}
+
+
+/* ==========================================================
+                    SPIN ANIMATION
+========================================================== */
+
+@keyframes spin{
+
+    100%{
+
+        transform:rotate(360deg);
+
+    }
+
+}
+
+
+
+/* ==========================================================
+                    TOAST
+========================================================== */
+
+#toast{
+
+    position:fixed;
+
+    right:30px;
+
+    bottom:30px;
+
+    background:#16a34a;
+
+    color:white;
+
+    padding:16px 24px;
+
+    border-radius:10px;
+
+    font-weight:600;
+
+    box-shadow:0 10px 30px rgba(0,0,0,.2);
+
+    opacity:0;
+
+    visibility:hidden;
+
+    transform:translateY(40px);
+
+    transition:.35s;
+
+    z-index:11000;
+
+}
+
+
+/* ==========================================================
+                    SHOW TOAST
+========================================================== */
+
+#toast.show{
+
+    opacity:1;
+
+    visibility:visible;
+
+    transform:translateY(0);
+
+}
+
+
+/* ==========================================================
+                    SUCCESS
+========================================================== */
+
+#toast.success{
+
+    background:#16a34a;
+
+}
+
+
+/* ==========================================================
+                    ERROR
+========================================================== */
+
+#toast.error{
+
+    background:#dc2626;
+
+}
+
+
+/* ==========================================================
+                    WARNING
+========================================================== */
+
+#toast.warning{
+
+    background:#f59e0b;
+
+}
+
+
+/* ==========================================================
+                    INFO
+========================================================== */
+
+#toast.info{
+
+    background:#2563eb;
+
+}/* ==========================================================
+                    DARK MODE
+========================================================== */
+
+/* Body me "dark-mode" class add hogi to ye styles apply honge */
+
+body.dark-mode{
+
+    background:#0f172a;
+
+    color:#f8fafc;
+
+}
+
+
+/* Sidebar Dark Mode */
+
+body.dark-mode .sidebar{
+
+    background:#020617;
+
+}
+
+
+/* Header */
+
+body.dark-mode .header{
+
+    background:#1e293b;
+
+    color:white;
+
+}
+
+
+/* Dashboard Cards */
+
+body.dark-mode .card{
+
+    background:#1e293b;
+
+    color:white;
+
+    border:1px solid #334155;
+
+}
+
+
+/* Form */
+
+body.dark-mode #project-form{
+
+    background:#1e293b;
+
+    border:1px solid #334155;
+
+}
+
+
+/* Inputs */
+
+body.dark-mode input,
+
+body.dark-mode textarea{
+
+    background:#0f172a;
+
+    color:white;
+
+    border:1px solid #475569;
+
+}
+
+
+/* Placeholder */
+
+body.dark-mode input::placeholder,
+
+body.dark-mode textarea::placeholder{
+
+    color:#94a3b8;
+
+}
+
+
+/* Project Card */
+
+body.dark-mode .project-card{
+
+    background:#1e293b;
+
+    border:1px solid #334155;
+
+}
+
+
+/* Modal */
+
+body.dark-mode .modal-content{
+
+    background:#1e293b;
+
+    color:white;
+
+}
+
+
+/* Toast */
+
+body.dark-mode #toast{
+
+    box-shadow:0 0 25px rgba(255,255,255,.08);
+
+}
+
+
+/* ==========================================================
+                    SMOOTH SCROLL
+========================================================== */
+
+html{
+
+    scroll-behavior:smooth;
+
+}
+
+
+/* ==========================================================
+                    SECTION ANIMATION
+========================================================== */
+
+section{
+
+    animation:fadeUp .6s ease;
+
+}
+
+@keyframes fadeUp{
 
     from{
 
         opacity:0;
 
-        transform:translateY(30px);
+        transform:translateY(25px);
 
     }
 
@@ -770,864 +1484,186 @@ button{
 }
 
 
-
-/* ======================================================
-                    CARD SHINE EFFECT
-====================================================== */
-
-.card::after{
-
-    content:"";
-
-    position:absolute;
-
-    top:-100%;
-
-    left:-100%;
-
-    width:200%;
-
-    height:200%;
-
-    background:linear-gradient(
-
-        120deg,
-
-        transparent,
-
-        rgba(255,255,255,.20),
-
-        transparent
-
-    );
-
-    transform:rotate(25deg);
-
-    transition:.8s;
-
-}
-
-
-
-.card:hover::after{
-
-    top:100%;
-
-    left:100%;
-
-}
-
-
-
-/* ======================================================
-                    SMALL TEXT
-====================================================== */
-
-.card span{
-
-    display:block;
-
-    margin-top:10px;
-
-    color:var(--text);
-
-    font-size:14px;
-
-}
-
-
-
-/* ======================================================
-                    CARD ACTIVE
-====================================================== */
-
-.card:active{
-
-    transform:scale(.97);
-
-}
-
-
-
-/* ======================================================
-                    CARD TRANSITION
-====================================================== */
-
-.card,
-
-.card i,
-
-.card h3,
-
-.card p{
-
-    transition:.35s;
-
-}/* ======================================================
-                    PROJECT FORM
-====================================================== */
-
-#project-form{
-
-    background:var(--card);
-
-    padding:30px;
-
-    border-radius:20px;
-
-    box-shadow:var(--shadow);
-
-    border:1px solid var(--border);
-
-}
-
-
-
-/* ======================================================
-                    INPUTS
-====================================================== */
-
-#project-form input,
-
-#project-form textarea{
-
-    width:100%;
-
-    padding:15px 18px;
-
-    margin-bottom:20px;
-
-    border:2px solid var(--border);
-
-    border-radius:12px;
-
-    outline:none;
-
-    background:transparent;
-
-    color:var(--black);
-
-    font-size:16px;
-
-    transition:.3s;
-
-}
-
-
-
-/* ======================================================
-                    PLACEHOLDER
-====================================================== */
-
-#project-form input::placeholder,
-
-#project-form textarea::placeholder{
-
-    color:#9ca3af;
-
-}
-
-
-
-/* ======================================================
-                    TEXTAREA
-====================================================== */
-
-#project-form textarea{
-
-    min-height:140px;
-
-    resize:vertical;
-
-}
-
-
-
-/* ======================================================
-                    INPUT FOCUS
-====================================================== */
-
-#project-form input:focus,
-
-#project-form textarea:focus{
-
-    border-color:var(--primary);
-
-    box-shadow:0 0 10px rgba(37,99,235,.25);
-
-}
-
-
-
-/* ======================================================
-                    SUBMIT BUTTON
-====================================================== */
-
-#project-form button{
-
-    width:100%;
-
-    padding:16px;
-
-    border:none;
-
-    border-radius:12px;
-
-    background:linear-gradient(135deg,#2563eb,#1d4ed8);
-
-    color:white;
-
-    font-size:18px;
-
-    font-weight:600;
-
-    cursor:pointer;
-
-    transition:.3s;
-
-}
-
-
-
-/* ======================================================
-                    BUTTON HOVER
-====================================================== */
-
-#project-form button:hover{
-
-    transform:translateY(-3px);
-
-    box-shadow:0 15px 30px rgba(37,99,235,.35);
-
-}
-
-
-
-/* ======================================================
-                    BUTTON ACTIVE
-====================================================== */
-
-#project-form button:active{
-
-    transform:scale(.98);
-
-}
-
-
-
-/* ======================================================
-                    PROJECT LIST
-====================================================== */
-
-#project-list{
-
-    margin-top:30px;
-
-    display:grid;
-
-    grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
-
-    gap:25px;
-
-}
-
-
-
-/* ======================================================
-                    PROJECT CARD
-====================================================== */
-
-.project-card{
-
-    background:var(--card);
-
-    border-radius:18px;
-
-    padding:20px;
-
-    border:1px solid var(--border);
-
-    box-shadow:var(--shadow);
-
-    transition:.3s;
-
-}
-
-
-
-/* ======================================================
-                    PROJECT IMAGE
-====================================================== */
-
-.project-card img{
-
-    width:100%;
-
-    height:200px;
-
-    object-fit:cover;
-
-    border-radius:12px;
-
-    margin-bottom:15px;
-
-}
-
-
-
-/* ======================================================
-                    PROJECT TITLE
-====================================================== */
-
-.project-card h3{
-
-    color:var(--black);
-
-    margin-bottom:10px;
-
-}
-
-
-
-/* ======================================================
-                    PROJECT DESCRIPTION
-====================================================== */
-
-.project-card p{
-
-    color:var(--text);
-
-    line-height:1.6;
-
-    margin-bottom:15px;
-
-}
-
-
-
-/* ======================================================
-                    PROJECT BUTTON AREA
-====================================================== */
-
-.project-buttons{
-
-    display:flex;
-
-    gap:10px;
-
-}
-
-
-
-/* ======================================================
-                    COMMON BUTTON
-====================================================== */
-
-.project-buttons button{
-
-    flex:1;
-
-    padding:12px;
-
-    border:none;
-
-    border-radius:10px;
-
-    cursor:pointer;
-
-    color:white;
-
-    font-weight:600;
-
-    transition:.3s;
-
-}
-
-
-
-/* ======================================================
-                    EDIT BUTTON
-====================================================== */
-
-.edit-btn{
-
-    background:#16a34a;
-
-}
-
-
-
-/* ======================================================
-                    DELETE BUTTON
-====================================================== */
-
-.delete-btn{
-
-    background:#dc2626;
-
-}
-
-
-
-/* ======================================================
-                    BUTTON HOVER
-====================================================== */
-
-.project-buttons button:hover{
-
-    transform:translateY(-2px);
-
-}
-
-
-
-/* ======================================================
-                    EMPTY MESSAGE
-====================================================== */
-
-.no-project{
-
-    text-align:center;
-
-    padding:40px;
-
-    color:var(--text);
-
-    background:var(--card);
-
-    border-radius:15px;
-
-    border:2px dashed var(--border);
-
-}
-/* ======================================================
-                    DARK MODE
-====================================================== */
-
-body.dark{
-
-    background:#020617;
-
-}
-
-body.dark .sidebar{
-
-    background:#0f172a;
-
-}
-
-body.dark .header{
-
-    background:#0f172a;
-
-}
-
-body.dark .card{
-
-    background:#1e293b;
-
-}
-
-body.dark #project-form{
-
-    background:#1e293b;
-
-}
-
-body.dark .project-card{
-
-    background:#1e293b;
-
-}
-
-body.dark section h2,
-
-body.dark .header h1,
-
-body.dark .card h3,
-
-body.dark .project-card h3{
-
-    color:#ffffff;
-
-}
-
-body.dark .card p,
-
-body.dark .project-card p,
-
-body.dark label{
-
-    color:#cbd5e1;
-
-}
-
-body.dark input,
-
-body.dark textarea{
-
-    color:white;
-
-    border-color:#334155;
-
-}
-
-body.dark input::placeholder,
-
-body.dark textarea::placeholder{
-
-    color:#94a3b8;
-
-}
-
-body.dark #theme-btn{
-
-    background:#1e293b;
-
-    color:white;
-
-}
-
-
-
-/* ======================================================
-                    RESPONSIVE
-====================================================== */
-
-@media(max-width:992px){
-
-.main-content{
-
-margin-left:0;
-
-}
-
-.sidebar{
-
-left:-280px;
-
-z-index:999;
-
-}
-
-.sidebar.show{
-
-left:0;
-
-}
-
-#menu-btn{
-
-display:block;
-
-}
-
-.header{
-
-padding:18px;
-
-}
-
-.cards{
-
-grid-template-columns:repeat(2,1fr);
-
-}
-
-}
-
-
-
-/* ======================================================
-                    MOBILE
-====================================================== */
-
-@media(max-width:768px){
-
-.cards{
-
-grid-template-columns:1fr;
-
-}
-
-.header{
-
-flex-wrap:wrap;
-
-gap:15px;
-
-}
-
-.header h1{
-
-font-size:22px;
-
-}
-
-.header-right{
-
-width:100%;
-
-justify-content:flex-end;
-
-}
-
-section{
-
-padding:20px;
-
-}
-
-.logo img{
-
-width:70px;
-
-}
-
-.logo h2{
-
-font-size:22px;
-
-}
-
-.project-buttons{
-
-flex-direction:column;
-
-}
-
-}
-
-
-
-/* ======================================================
-                SMALL MOBILE
-====================================================== */
-
-@media(max-width:480px){
-
-.header{
-
-padding:15px;
-
-}
-
-#logout-btn{
-
-padding:10px 18px;
-
-font-size:14px;
-
-}
-
-#theme-btn{
-
-width:45px;
-
-height:45px;
-
-}
-
-#menu-btn{
-
-width:45px;
-
-height:45px;
-
-}
-
-section h2{
-
-font-size:22px;
-
-}
-
-.card{
-
-padding:20px;
-
-}
-
-.card p{
-
-font-size:28px;
-
-}
-
-.project-card img{
-
-height:180px;
-
-}
-
-}
-
-
-
-/* ======================================================
-                    LOADING
-====================================================== */
-
-.loading{
-
-opacity:.6;
-
-pointer-events:none;
-
-}
-
-
-
-/* ======================================================
-                    HIDE
-====================================================== */
-
-.hide{
-
-display:none;
-
-}
-
-
-
-/* ======================================================
-                    SHOW
-====================================================== */
-
-.show{
-
-display:block;
-
-}
-
-
-
-/* ======================================================
-                FADE ANIMATION
-====================================================== */
-
-.fade{
-
-animation:fade .5s ease;
-
-}
-
-@keyframes fade{
-
-from{
-
-opacity:0;
-
-transform:translateY(20px);
-
-}
-
-to{
-
-opacity:1;
-
-transform:translateY(0);
-
-}
-
-}
-
-
-
-/* ======================================================
-                SPIN ANIMATION
-====================================================== */
-
-.spin{
-
-animation:spin 1s linear infinite;
-
-}
-
-@keyframes spin{
-
-from{
-
-transform:rotate(0deg);
-
-}
-
-to{
-
-transform:rotate(360deg);
-
-}
-
-}
-
-
-
-/* ======================================================
-                SCROLLBAR
-====================================================== */
+/* ==========================================================
+                    CUSTOM SCROLLBAR
+========================================================== */
 
 ::-webkit-scrollbar{
 
-width:10px;
+    width:10px;
 
 }
 
 ::-webkit-scrollbar-track{
 
-background:var(--background);
+    background:#e5e7eb;
 
 }
 
 ::-webkit-scrollbar-thumb{
 
-background:var(--primary);
+    background:#2563eb;
 
-border-radius:20px;
+    border-radius:20px;
 
 }
 
 ::-webkit-scrollbar-thumb:hover{
 
-background:var(--primary-hover);
+    background:#1d4ed8;
 
 }
 
 
+/* ==========================================================
+                    MOBILE MENU BUTTON
+========================================================== */
 
-/* ======================================================
-                SMOOTH SCROLL
-====================================================== */
+#menu-btn{
 
-html{
-
-scroll-behavior:smooth;
-
-}
-
-
-
-/* ======================================================
-                TRANSITION
-====================================================== */
-
-*{
-
-transition:
-
-background .3s,
-
-color .3s,
-
-border .3s,
-
-transform .3s,
-
-box-shadow .3s;
+    display:none;
 
 }
 
 
+/* ==========================================================
+                    TABLET
+========================================================== */
 
-/* ======================================================
-                    END
-====================================================== */
+@media(max-width:992px){
+
+    .sidebar{
+
+        width:220px;
+
+    }
+
+    .main-content{
+
+        margin-left:220px;
+
+        width:calc(100% - 220px);
+
+    }
+
+}
+
+
+/* ==========================================================
+                    MOBILE
+========================================================== */
+
+@media(max-width:768px){
+
+    /* Sidebar Hidden */
+
+    .sidebar{
+
+        position:fixed;
+
+        left:-100%;
+
+        transition:.35s;
+
+        z-index:999;
+
+    }
+
+    /* Sidebar Open */
+
+    .sidebar.show{
+
+        left:0;
+
+    }
+
+    /* Main Content */
+
+    .main-content{
+
+        width:100%;
+
+        margin-left:0;
+
+        padding:20px;
+
+    }
+
+    /* Header */
+
+    .header{
+
+        flex-wrap:wrap;
+
+        gap:15px;
+
+    }
+
+    /* Dashboard Cards */
+
+    .cards{
+
+        grid-template-columns:1fr;
+
+    }
+
+    /* Project List */
+
+    #project-list{
+
+        grid-template-columns:1fr;
+
+    }
+
+    /* Menu Button */
+
+    #menu-btn{
+
+        display:block;
+
+    }
+
+}
+
+
+/* ==========================================================
+                    SMALL MOBILE
+========================================================== */
+
+@media(max-width:480px){
+
+    .header h1{
+
+        font-size:22px;
+
+    }
+
+    .card{
+
+        padding:20px;
+
+    }
+
+    .project-buttons{
+
+        flex-direction:column;
+
+    }
+
+    .modal-content{
+
+        width:95%;
+
+    }
+
+    #toast{
+
+        right:15px;
+
+        left:15px;
+
+        bottom:15px;
+
+    }
+
+}
