@@ -878,14 +878,51 @@ themeBtn.addEventListener("click",()=>{
 /* ==========================================================
                 SIDEBAR TOGGLE
 ========================================================== */
+/* ==========================
+        MENU BUTTON
+========================== */
 
-menuBtn.addEventListener("click",()=>{
+menuBtn.addEventListener("click", (e) => {
 
+    // Event bubble na ho
+    e.stopPropagation();
+
+    // Sidebar Open/Close
     sidebar.classList.toggle("show");
 
 });
+/* ==========================
+    AUTO CLOSE SIDEBAR
+========================== */
 
+const navLinks = document.querySelectorAll(".sidebar a");
 
+navLinks.forEach(link => {
+
+    link.addEventListener("click", () => {
+
+        if (window.innerWidth <= 768) {
+
+            sidebar.classList.remove("show");
+
+        }
+
+    });
+
+});
+document.addEventListener("click", (e) => {
+
+    if (
+        window.innerWidth <= 768 &&
+        !sidebar.contains(e.target) &&
+        !menuBtn.contains(e.target)
+    ) {
+
+        sidebar.classList.remove("show");
+
+    }
+
+});
 /* ==========================================================
                 LOGOUT
 ========================================================== */

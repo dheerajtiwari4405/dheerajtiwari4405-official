@@ -1555,17 +1555,25 @@ section{
 
 @media(max-width:768px){
 
+      /* Menu Button */
+
+    #menu-btn{
+
+        display:block;
+
+    }
+
     /* Sidebar Hidden */
 
     .sidebar{
 
-        position:fixed;
-
+       position:fixed;
         left:-100%;
-
-        transition:.35s;
-
-        z-index:999;
+        top:0;
+        width:260px;
+        height:100vh;
+        transition:.3s;
+        z-index:1000;
 
     }
 
@@ -1615,14 +1623,7 @@ section{
 
     }
 
-    /* Menu Button */
-
-    #menu-btn{
-
-        display:block;
-
-    }
-
+  
 }
 
 
