@@ -52,8 +52,8 @@ const projectList = document.getElementById("project-list");
 // Total Projects
 const totalProjects = document.getElementById("total-projects");
 
-// Total Messages
-const totalMessages = document.getElementById("total-messages");
+// // Total Messages
+// const totalMessages = document.getElementById("total-messages");
 
 // Total Visitors
 const totalVisitors = document.getElementById("total-visitors");
@@ -82,6 +82,13 @@ const sidebar = document.querySelector(".sidebar");
 /* ==========================================================
                 MODAL
 ========================================================== */
+
+/* ==========================================================
+                MESSAGE LIST
+========================================================== */
+
+// // Message Container
+// const messageList = document.getElementById("message-list");
 
 // Delete Modal
 const deleteModal = document.getElementById("delete-modal");
@@ -1018,4 +1025,696 @@ window.addEventListener("load",()=>{
 
     );
 
+});/* ==========================================================
+                LOAD ALL MESSAGES
+========================================================== */
+
+db.collection("messages")
+
+.orderBy("createdAt","desc")
+
+.onSnapshot((snapshot)=>{
+
+    // Purane Messages Remove
+    messageList.innerHTML="";
+
+    // Dashboard Count
+    totalMessages.innerText=snapshot.size;
+
+
+    // Agar Koi Message Nahi Hai
+    if(snapshot.empty){
+
+        messageList.innerHTML=`
+
+        <div class="no-project">
+
+            <i class="fa-solid fa-envelope-open"></i>
+
+            <h2>No Messages Found</h2>
+
+            <p>No one has contacted you yet.</p>
+
+        </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    // Firestore Data Read
+    snapshot.forEach((doc)=>{
+
+        const message={
+
+            id:doc.id,
+
+            ...doc.data()
+
+        };
+
+
+        // Card
+        const card=document.createElement("div");
+
+        card.className="message-card";
+
+
+        card.innerHTML=`
+
+            <div class="message-header">
+
+                <h3>
+
+                    ${message.name}
+
+                </h3>
+
+                <span class="${
+                    message.isRead
+                    ?
+                    "read"
+                    :
+                    "unread"
+                }">
+
+                    ${
+                        message.isRead
+                        ?
+                        "Read"
+                        :
+                        "Unread"
+                    }
+
+                </span>
+
+            </div>
+
+
+            <p>
+
+                <strong>Email :</strong>
+
+                ${message.email}
+
+            </p>
+
+            <p>
+
+                <strong>Phone :</strong>
+
+                ${message.phone || "-"}
+
+            </p>
+
+            <p>
+
+                <strong>Subject :</strong>
+
+                ${message.subject || "-"}
+
+            </p>
+
+            <p class="message-text">
+
+                ${message.message}
+
+            </p>
+
+            <button
+
+                class="read-btn"
+
+                data-id="${message.id}">
+
+                Mark As Read
+
+            </button>
+
+            <button
+
+                class="delete-message-btn"
+
+                data-id="${message.id}">
+
+                Delete
+
+            </button>
+
+        `;
+
+
+        messageList.appendChild(card);
+
+    });
+
 });
+/* ==========================================================
+                PART 3
+            MARK AS READ
+========================================================== */
+
+function setupReadButtons(){
+
+    // Sabhi Read Buttons Select Karo
+    const readButtons = document.querySelectorAll(".read-btn");
+
+    // Har Button Par Event Lagao
+    readButtons.forEach((button)=>{
+
+        button.addEventListener("click", async ()=>{
+
+            // Message ID
+            const messageId = button.dataset.id;
+
+            try{
+
+                // Firestore Update
+                await db
+                .collection("messages")
+                .doc(messageId)
+                .update({
+
+                    isRead:true
+
+                });
+
+                // Success Toast
+                showToast(
+
+                    "Message Marked As Read",
+
+                    "success"
+
+                );
+
+            }
+
+            catch(error){
+
+                console.log(error);
+
+                showToast(
+
+                    error.message,
+
+                    "error"
+
+                );
+
+            }
+
+        });
+
+    });
+
+}
+/* ==========================================================
+                MESSAGE MODULE
+                    PART - 1
+========================================================== */
+
+
+/* ==========================================================
+                DOM ELEMENTS
+========================================================== */
+
+// Message Container
+const messageList =
+document.getElementById("message-list");
+
+// Search Box
+const searchMessage =
+document.getElementById("search-message");
+
+// Filter
+const messageFilter =
+document.getElementById("message-filter");
+
+// Sort
+const messageSort =
+document.getElementById("message-sort");
+
+// Total Messages
+const totalMessages =
+document.getElementById("total-messages");
+
+// Modal
+const messageModal =
+document.getElementById("message-modal");
+
+const closeMessageModal =
+document.getElementById("close-message-modal");
+
+// Modal Data
+const modalName =
+document.getElementById("modal-name");
+
+const modalEmail =
+document.getElementById("modal-email");
+
+const modalPhone =
+document.getElementById("modal-phone");
+
+const modalSubject =
+document.getElementById("modal-subject");
+
+const modalMessage =
+document.getElementById("modal-message");
+
+// Buttons
+const markReadBtn =
+document.getElementById("mark-read-btn");
+
+const deleteMessageBtn =
+document.getElementById("delete-message-btn");
+
+
+/* ==========================================================
+                GLOBAL VARIABLES
+========================================================== */
+
+// Sabhi Messages
+let allMessages = [];
+
+// Selected Message
+let selectedMessage = null;
+
+
+/* ==========================================================
+            REALTIME FIRESTORE
+========================================================== */
+
+db.collection("messages")
+
+.orderBy("createdAt","desc")
+
+.onSnapshot((snapshot)=>{
+
+    // Array Empty
+    allMessages = [];
+
+    snapshot.forEach((doc)=>{
+
+        allMessages.push({
+
+            id:doc.id,
+
+            ...doc.data()
+
+        });
+
+    });
+
+    // Counter
+    totalMessages.innerText =
+    allMessages.length;
+
+    // Messages Show
+    renderMessages(allMessages);
+
+});
+/* ==========================================================
+                RENDER MESSAGES
+========================================================== */
+
+function renderMessages(messages){
+
+    // Purane Cards Remove
+    messageList.innerHTML = "";
+
+    // Agar Message Nahi Hai
+    if(messages.length === 0){
+
+        messageList.innerHTML = `
+
+            <div class="empty-message">
+
+                <i class="fa-solid fa-envelope-open-text"></i>
+
+                <h2>No Messages Found</h2>
+
+                <p>No messages available.</p>
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+    // Sabhi Messages Loop
+    messages.forEach((message)=>{
+
+        // Date
+        let date = "";
+
+        if(message.createdAt){
+
+            date = new Date(
+
+                message.createdAt.seconds * 1000
+
+            ).toLocaleString();
+
+        }
+
+        // Card
+        const card = document.createElement("div");
+
+        card.className = "message-card";
+
+        card.innerHTML = `
+
+            <h3>
+
+                ${message.name}
+
+            </h3>
+
+            <p class="email">
+
+                ${message.email}
+
+            </p>
+
+            <p class="subject">
+
+                ${message.subject || "No Subject"}
+
+            </p>
+
+            <p class="preview">
+
+                ${message.message.substring(0,120)}...
+
+            </p>
+
+            <p class="date">
+
+                ${date}
+
+            </p>
+
+            <span class="status ${
+
+                message.isRead
+
+                ?
+
+                "read"
+
+                :
+
+                "unread"
+
+            }">
+
+                ${
+
+                    message.isRead
+
+                    ?
+
+                    "Read"
+
+                    :
+
+                    "Unread"
+
+                }
+
+            </span>
+
+            <div class="message-actions">
+
+                <button
+
+                    class="view-btn"
+
+                    data-id="${message.id}">
+
+                    View
+
+                </button>
+
+                <button
+
+                    class="read-btn"
+
+                    data-id="${message.id}"
+
+                    ${
+
+                        message.isRead
+
+                        ?
+
+                        "disabled"
+
+                        :
+
+                        ""
+
+                    }>
+
+                    ${
+
+                        message.isRead
+
+                        ?
+
+                        "Read"
+
+                        :
+
+                        "Mark Read"
+
+                    }
+
+                </button>
+
+                <button
+
+                    class="delete-message-btn"
+
+                    data-id="${message.id}">
+
+                    Delete
+
+                </button>
+
+            </div>
+
+        `;
+
+        messageList.appendChild(card);
+
+    });
+
+    // Events
+    setupViewButtons();
+
+    setupReadButtons();
+
+    setupDeleteButtons();
+
+}
+/* ==========================================================
+            MESSAGE ACTIONS
+========================================================== */
+
+/* ---------- View Button ---------- */
+
+function setupViewButtons(){
+
+    document.querySelectorAll(".view-btn").forEach((button)=>{
+
+        button.addEventListener("click",()=>{
+
+            const id = button.dataset.id;
+
+            selectedMessage = allMessages.find(
+
+                message=>message.id===id
+
+            );
+
+            if(!selectedMessage) return;
+
+            modalName.textContent =
+            selectedMessage.name;
+
+            modalEmail.textContent =
+            selectedMessage.email;
+
+            modalPhone.textContent =
+            selectedMessage.phone || "-";
+
+            modalSubject.textContent =
+            selectedMessage.subject || "No Subject";
+
+            modalMessage.textContent =
+            selectedMessage.message;
+
+            messageModal.classList.add("show");
+
+        });
+
+    });
+
+}
+
+
+/* ---------- Close Modal ---------- */
+
+closeMessageModal.addEventListener("click",()=>{
+
+    messageModal.classList.remove("show");
+
+});
+
+window.addEventListener("click",(e)=>{
+
+    if(e.target===messageModal){
+
+        messageModal.classList.remove("show");
+
+    }
+
+});
+
+
+/* ---------- ESC Key ---------- */
+
+document.addEventListener("keydown",(e)=>{
+
+    if(e.key==="Escape"){
+
+        messageModal.classList.remove("show");
+
+    }
+
+});
+
+
+/* ==========================================================
+            MARK AS READ
+========================================================== */
+
+function setupReadButtons(){
+
+    document.querySelectorAll(".read-btn").forEach((button)=>{
+
+        button.addEventListener("click",async()=>{
+
+            const id = button.dataset.id;
+
+            try{
+
+                await db.collection("messages")
+
+                .doc(id)
+
+                .update({
+
+                    isRead:true
+
+                });
+
+                showToast(
+
+                    "Message Marked As Read"
+
+                );
+
+            }
+
+            catch(error){
+
+                alert(error.message);
+
+            }
+
+        });
+
+    });
+
+}
+
+
+/* ==========================================================
+            DELETE MESSAGE
+========================================================== */
+
+function setupDeleteButtons(){
+
+    document.querySelectorAll(".delete-message-btn")
+
+    .forEach((button)=>{
+
+        button.addEventListener("click",async()=>{
+
+            const id = button.dataset.id;
+
+            const confirmDelete = confirm(
+
+                "Delete this message ?"
+
+            );
+
+            if(!confirmDelete) return;
+
+            try{
+
+                await db.collection("messages")
+
+                .doc(id)
+
+                .delete();
+
+                showToast(
+
+                    "Message Deleted"
+
+                );
+
+            }
+
+            catch(error){
+
+                alert(error.message);
+
+            }
+
+        });
+
+    });
+
+}
+
+
+/* ==========================================================
+            TOAST
+========================================================== */
+
+function showToast(message){
+
+    const toast =
+
+    document.getElementById("toast");
+
+    toast.textContent = message;
+
+    toast.classList.add("show");
+
+    setTimeout(()=>{
+
+        toast.classList.remove("show");
+
+    },3000);
+
+}

@@ -1667,4 +1667,648 @@ section{
 
     }
 
+}* /* ==========================================
+            CONTACT MESSAGE SECTION
+========================================== */
+
+#messages{
+
+    margin-top:40px;
+
+}
+
+/* Heading */
+
+#messages h2{
+
+    color:white;
+
+    margin-bottom:20px;
+
+}
+
+/* ==========================================
+            TOP TOOLBAR
+========================================== */
+
+.message-toolbar{
+
+    display:flex;
+
+    gap:15px;
+
+    flex-wrap:wrap;
+
+    margin-bottom:20px;
+
+}
+
+/* Search */
+
+#search-message{
+
+    flex:1;
+
+    min-width:220px;
+
+    padding:12px;
+
+    border:none;
+
+    border-radius:10px;
+
+    outline:none;
+
+    background:#202736;
+
+    color:white;
+
+    font-size:15px;
+
+}
+
+/* Dropdown */
+
+#message-filter,
+#message-sort{
+
+    padding:12px;
+
+    border:none;
+
+    border-radius:10px;
+
+    background:#202736;
+
+    color:white;
+
+    cursor:pointer;
+
+}
+
+/* Counter */
+
+.message-count{
+
+    color:#6ec1ff;
+
+    font-size:18px;
+
+    margin-bottom:20px;
+
+    font-weight:bold;
+
+}
+
+/* ==========================================
+            MESSAGE GRID
+========================================== */
+
+#message-list{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(330px,1fr));
+
+    gap:20px;
+
+}
+/* ==========================================
+            MESSAGE CARD
+========================================== */
+
+.message-card{
+
+    background:#1b2232;
+
+    border-radius:15px;
+
+    padding:20px;
+
+    border-left:5px solid #00bfff;
+
+    transition:.3s;
+
+    box-shadow:0 10px 25px rgba(0,0,0,.25);
+
+}
+
+.message-card:hover{
+
+    transform:translateY(-5px);
+
+}
+
+/* Name */
+
+.message-card h3{
+
+    color:#ffffff;
+
+    margin-bottom:10px;
+
+}
+
+/* Email */
+
+.message-card .email{
+
+    color:#9fcfff;
+
+    font-size:14px;
+
+    margin-bottom:8px;
+
+}
+
+/* Subject */
+
+.message-card .subject{
+
+    color:#f1f1f1;
+
+    font-weight:bold;
+
+    margin-bottom:10px;
+
+}
+
+/* Message Preview */
+
+.message-card .preview{
+
+    color:#cfcfcf;
+
+    line-height:1.6;
+
+    margin-bottom:15px;
+
+}
+
+/* Date */
+
+.message-card .date{
+
+    color:#8f9db3;
+
+    font-size:13px;
+
+    margin-bottom:15px;
+
+}
+
+/* ==========================================
+            STATUS BADGE
+========================================== */
+
+.status{
+
+    display:inline-block;
+
+    padding:6px 14px;
+
+    border-radius:30px;
+
+    font-size:12px;
+
+    font-weight:bold;
+
+    margin-bottom:15px;
+
+}
+
+.read{
+
+    background:#00c853;
+
+    color:white;
+
+}
+
+.unread{
+
+    background:#ff3d3d;
+
+    color:white;
+
+}
+/* ==========================================
+            MESSAGE BUTTONS
+========================================== */
+
+.message-actions{
+
+    display:flex;
+
+    gap:10px;
+
+    margin-top:15px;
+
+    flex-wrap:wrap;
+
+}
+
+/* View Button */
+
+.view-btn{
+
+    flex:1;
+
+    padding:10px;
+
+    border:none;
+
+    border-radius:8px;
+
+    background:#2563eb;
+
+    color:#fff;
+
+    cursor:pointer;
+
+    font-size:14px;
+
+    transition:.3s;
+
+}
+
+.view-btn:hover{
+
+    background:#1d4ed8;
+
+}
+
+/* Read Button */
+
+.read-btn{
+
+    flex:1;
+
+    padding:10px;
+
+    border:none;
+
+    border-radius:8px;
+
+    background:#16a34a;
+
+    color:#fff;
+
+    cursor:pointer;
+
+    font-size:14px;
+
+    transition:.3s;
+
+}
+
+.read-btn:hover{
+
+    background:#15803d;
+
+}
+
+/* Delete Button */
+
+.delete-message-btn{
+
+    flex:1;
+
+    padding:10px;
+
+    border:none;
+
+    border-radius:8px;
+
+    background:#dc2626;
+
+    color:#fff;
+
+    cursor:pointer;
+
+    font-size:14px;
+
+    transition:.3s;
+
+}
+
+.delete-message-btn:hover{
+
+    background:#b91c1c;
+
+}
+
+/* Disabled Button */
+
+.read-btn:disabled{
+
+    background:#64748b;
+
+    cursor:not-allowed;
+
+}
+
+/* ==========================================
+            RESPONSIVE
+========================================== */
+
+@media(max-width:768px){
+
+    .message-actions{
+
+        flex-direction:column;
+
+    }
+
+    .view-btn,
+    .read-btn,
+    .delete-message-btn{
+
+        width:100%;
+
+    }
+
+}
+/* ==========================================
+            MESSAGE MODAL
+========================================== */
+
+.message-modal{
+
+    position:fixed;
+
+    top:0;
+
+    left:0;
+
+    width:100%;
+
+    height:100%;
+
+    background:rgba(0,0,0,.6);
+
+    display:none;
+
+    justify-content:center;
+
+    align-items:center;
+
+    z-index:9999;
+
+    padding:20px;
+
+}
+
+/* Show Modal */
+
+.message-modal.show{
+
+    display:flex;
+
+}
+
+/* ==========================================
+            MODAL CONTENT
+========================================== */
+
+.message-modal-content{
+
+    width:100%;
+
+    max-width:650px;
+
+    background:#1b2232;
+
+    color:#ffffff;
+
+    padding:30px;
+
+    border-radius:15px;
+
+    position:relative;
+
+    animation:popup .3s ease;
+
+}
+
+/* Popup Animation */
+
+@keyframes popup{
+
+    from{
+
+        transform:scale(.8);
+
+        opacity:0;
+
+    }
+
+    to{
+
+        transform:scale(1);
+
+        opacity:1;
+
+    }
+
+}
+
+/* ==========================================
+            CLOSE BUTTON
+========================================== */
+
+#close-message-modal{
+
+    position:absolute;
+
+    top:15px;
+
+    right:20px;
+
+    font-size:28px;
+
+    cursor:pointer;
+
+    color:#ffffff;
+
+    transition:.3s;
+
+}
+
+#close-message-modal:hover{
+
+    color:#ff4d4d;
+
+}
+
+/* ==========================================
+            MESSAGE DETAILS
+========================================== */
+
+.message-modal-content h2{
+
+    margin-bottom:20px;
+
+}
+
+.message-modal-content h3{
+
+    color:#4fc3f7;
+
+    margin-bottom:15px;
+
+}
+
+.message-modal-content p{
+
+    margin:12px 0;
+
+    line-height:1.7;
+
+}
+
+#modal-message{
+
+    margin-top:15px;
+
+    padding:15px;
+
+    background:#202736;
+
+    border-radius:10px;
+
+    line-height:1.8;
+
+    max-height:250px;
+
+    overflow-y:auto;
+
+}
+
+/* ==========================================
+            MODAL BUTTONS
+========================================== */
+
+.modal-buttons{
+
+    display:flex;
+
+    gap:15px;
+
+    margin-top:25px;
+
+    flex-wrap:wrap;
+
+}
+
+.modal-buttons button{
+
+    flex:1;
+
+    padding:12px;
+
+    border:none;
+
+    border-radius:8px;
+
+    cursor:pointer;
+
+    font-size:15px;
+
+    transition:.3s;
+
+}
+
+/* Read Button */
+
+#mark-read-btn{
+
+    background:#16a34a;
+
+    color:white;
+
+}
+
+#mark-read-btn:hover{
+
+    background:#15803d;
+
+}
+
+/* Delete Button */
+
+#delete-message-btn{
+
+    background:#dc2626;
+
+    color:white;
+
+}
+
+#delete-message-btn:hover{
+
+    background:#b91c1c;
+
+}
+
+/* ==========================================
+            TOAST
+========================================== */
+
+#toast{
+
+    position:fixed;
+
+    right:20px;
+
+    bottom:20px;
+
+    background:#2563eb;
+
+    color:white;
+
+    padding:15px 25px;
+
+    border-radius:10px;
+
+    opacity:0;
+
+    visibility:hidden;
+
+    transform:translateY(30px);
+
+    transition:.3s;
+
+    z-index:10000;
+
+}
+
+#toast.show{
+
+    opacity:1;
+
+    visibility:visible;
+
+    transform:translateY(0);
+
+}
+
+/* ==========================================
+            MOBILE
+========================================== */
+
+@media(max-width:768px){
+
+    .message-modal-content{
+
+        padding:20px;
+
+    }
+
+    .modal-buttons{
+
+        flex-direction:column;
+
+    }
+
 }

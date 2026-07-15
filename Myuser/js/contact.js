@@ -1,91 +1,92 @@
-/* ==========================================================
-            CONTACT FORM VALIDATION
-========================================================== */
+/* =====================================================
+                CONTACT FORM
+===================================================== */
 
-/*
--------------------------------------------------------------
-STEP 1
+// Form
 
-Form Select
+const contactForm = document.getElementById("contact-form");
 
--------------------------------------------------------------
-*/
+// Inputs
 
-const contactForm = document.querySelector("#contact-form");
+const nameInput = document.getElementById("contact-name");
 
-/*
--------------------------------------------------------------
-Submit Event
+const emailInput = document.getElementById("contact-email");
 
--------------------------------------------------------------
-*/
+const phoneInput = document.getElementById("contact-phone");
 
-contactForm.addEventListener("submit",(event)=>{
+const subjectInput = document.getElementById("contact-subject");
 
-    /*
-    Page Refresh Stop
+const messageInput = document.getElementById("contact-message");
 
-    */
 
-    event.preventDefault();
+/* =====================================================
+                SUBMIT FORM
+===================================================== */
 
-    /*
-    Inputs
+contactForm.addEventListener("submit", async (e) => {
 
-    */
+    e.preventDefault();
 
-    const name=document.querySelector("#name").value.trim();
 
-    const email=document.querySelector("#email").value.trim();
+    // Input Values
 
-    const phone=document.querySelector("#phone").value.trim();
+    const name = nameInput.value.trim();
 
-    const message=document.querySelector("#message").value.trim();
+    const email = emailInput.value.trim();
 
-    /*
-    Empty Validation
+    const phone = phoneInput.value.trim();
 
-    */
+    const subject = subjectInput.value.trim();
 
-    if(name===""){
+    const message = messageInput.value.trim();
 
-        showToast("Please Enter Name","error");
+
+    // Validation
+
+    if (!name || !email || !message) {
+
+        alert("Please fill all required fields.");
 
         return;
 
     }
 
-    if(email===""){
 
-        showToast("Please Enter Email","error");
+    try {
 
-        return;
+        // Save Firestore
+
+        await db.collection("messages").add({
+
+            name,
+
+            email,
+
+            phone,
+
+            subject,
+
+            message,
+
+            isRead: false,
+
+            createdAt: firebase.firestore.FieldValue.serverTimestamp()
+
+        });
+
+
+        alert("✅ Message Sent Successfully.");
+
+        contactForm.reset();
 
     }
 
-    if(phone===""){
+    catch (error) {
 
-        showToast("Please Enter Phone Number","error");
+        console.error(error);
 
-        return;
-
-    }
-
-    if(message===""){
-
-        showToast("Please Enter Message","error");
-
-        return;
+        alert(error.message);
 
     }
-
-    /*
-    Success
-
-    */
-
-    showToast("Message Sent Successfully 🚀","success");
-
-    contactForm.reset();
 
 });

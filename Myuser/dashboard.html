@@ -168,14 +168,167 @@ id="edit-id">
                 id="project-list" class="project-grid">
                 </div>
     </section>
-    <!-- CONTACT MESSAGES== -->
-    <section id="messages">
+    <!-- =====================================
+            CONTACT MESSAGES
+===================================== -->
+
+<section id="messages">
+
+    <h2>
+        Contact Messages
+    </h2>
+
+    <!-- Top Bar -->
+
+    <div class="message-toolbar">
+
+        <!-- Search -->
+
+        <input
+            type="text"
+            id="search-message"
+            placeholder="Search by Name or Email">
+
+        <!-- Read Filter -->
+
+        <select id="message-filter">
+
+            <option value="all">
+                All Messages
+            </option>
+
+            <option value="read">
+                Read
+            </option>
+
+            <option value="unread">
+                Unread
+            </option>
+
+        </select>
+
+        <!-- Sort -->
+
+        <select id="message-sort">
+
+            <option value="newest">
+                Newest First
+            </option>
+
+            <option value="oldest">
+                Oldest First
+            </option>
+
+        </select>
+
+    </div>
+
+    <!-- Message Counter -->
+
+    <div class="message-count">
+
+        Total Messages :
+        <span id="total-messages">
+            0
+        </span>
+
+    </div>
+
+    <!-- Message List -->
+
+    <div id="message-list">
+
+        <!-- JavaScript se Cards banenge -->
+
+    </div>
+
+</section>
+
+<!-- =====================================
+        MESSAGE MODAL
+===================================== -->
+
+<div id="message-modal" class="message-modal">
+
+    <div class="message-modal-content">
+
+        <!-- Close Button -->
+
+        <span id="close-message-modal">
+
+            &times;
+
+        </span>
+
         <h2>
-            Contact Messages
+
+            Message Details
+
         </h2>
-        <div id="message-list">
+
+        <h3 id="modal-name"></h3>
+
+        <p>
+
+            <strong>Email :</strong>
+
+            <span id="modal-email"></span>
+
+        </p>
+
+        <p>
+
+            <strong>Phone :</strong>
+
+            <span id="modal-phone"></span>
+
+        </p>
+
+        <p>
+
+            <strong>Subject :</strong>
+
+            <span id="modal-subject"></span>
+
+        </p>
+
+        <p>
+
+            <strong>Message :</strong>
+
+        </p>
+
+        <div id="modal-message">
+
         </div>
-    </section>
+
+        <div class="modal-buttons">
+
+            <button id="mark-read-btn">
+
+                Mark As Read
+
+            </button>
+
+            <button id="delete-message-btn">
+
+                Delete
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- =====================================
+        TOAST MESSAGE
+===================================== -->
+
+<div id="toast">
+
+</div>
     <!-- ==========================
             SETTINGS
     =========================== -->
