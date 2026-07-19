@@ -1718,3 +1718,366 @@ function showToast(message){
     },3000);
 
 }
+/* ==============
+========================================================== */
+
+/* ==========================================================
+                DOM ELEMENTS
+========================================================== */
+
+const skillForm = document.getElementById("skill-form");
+
+const skillName = document.getElementById("skill-name");
+
+const skillCategory = document.getElementById("skill-category");
+
+const skillPercent = document.getElementById("skill-percent");
+
+const skillIcon = document.getElementById("skill-icon");
+
+const skillList = document.getElementById("skill-list");
+
+/* ==========================================================
+                GLOBAL VARIABLES
+========================================================== */
+
+let allSkills = [];
+
+let editSkillId = null;
+
+/* ==========================================================
+                REALTIME SKILLS
+========================================================== */
+
+db.collection("skills")
+
+.onSnapshot((snapshot)=>{
+
+    allSkills=[];
+
+    snapshot.forEach((doc)=>{
+
+        allSkills.push({
+
+            id:doc.id,
+
+            ...doc.data()
+
+        });
+
+    });
+
+    renderSkills();
+
+});
+
+/* ==========================================================
+                ADD / UPDATE SKILL
+========================================================== */
+
+skillForm.addEventListener("submit",async(e)=>{
+
+    e.preventDefault();
+
+    const skill={
+
+        name:skillName.value.trim(),
+
+        category:skillCategory.value.trim(),
+
+        percent:Number(skillPercent.value),
+
+        icon:skillIcon.value.trim()
+
+    };
+
+    if(
+
+        skill.name==="" ||
+
+        skill.category==="" ||
+
+        skill.icon===""
+
+    ){
+
+        alert("Please fill all fields.");
+
+        return;
+
+    }
+
+    try{
+
+        if(editSkillId){
+
+            await db
+
+            .collection("skills")
+
+            .doc(editSkillId)
+
+            .update(skill);
+
+            alert("Skill Updated Successfully");
+
+            editSkillId=null;
+
+            document.getElementById("skill-btn").innerText="Add Skill";
+
+        }
+
+        else{
+
+            await db
+
+            .collection("skills")
+
+            .add(skill);
+
+            alert("Skill Added Successfully");
+
+        }
+
+        skillForm.reset();
+
+    }
+
+    catch(error){
+
+        alert(error.message);
+
+    }
+
+});
+/* ==========================================================
+                RENDER SKILLS
+========================================================== */
+
+function renderSkills(){
+
+    // Purani Skills Remove
+
+    skillList.innerHTML = "";
+
+    // Empty State
+
+    if(allSkills.length===0){
+
+        skillList.innerHTML=`
+
+        <div class="skill-card">
+
+            <h2>
+
+                No Skills Added
+
+            </h2>
+
+            <p>
+
+                Add your first skill.
+
+            </p>
+
+        </div>
+
+        `;
+
+        return;
+
+    }
+
+    // Loop
+
+    allSkills.forEach((skill)=>{
+
+        const card=document.createElement("div");
+
+        card.className="skill-card";
+
+        card.innerHTML=`
+
+        <div class="skill-top">
+
+            <h3>
+
+                ${skill.name}
+
+            </h3>
+
+            <i class="${skill.icon}"></i>
+
+        </div>
+
+        <p class="skill-category">
+
+            ${skill.category}
+
+        </p>
+
+        <p class="skill-percent">
+
+            ${skill.percent}%
+
+        </p>
+
+        <div class="progress">
+
+            <div
+
+            class="progress-bar"
+
+            style="width:${skill.percent}%">
+
+            </div>
+
+        </div>
+
+        <div class="skill-actions">
+
+            <button
+
+            class="edit-skill"
+
+            data-id="${skill.id}">
+
+            <i class="fa-solid fa-pen"></i>
+
+            Edit
+
+            </button>
+
+            <button
+
+            class="delete-skill"
+
+            data-id="${skill.id}">
+
+            <i class="fa-solid fa-trash"></i>
+
+            Delete
+
+            </button>
+
+        </div>
+
+        `;
+
+        skillList.appendChild(card);
+
+    });
+
+    // Events
+
+    setupEditSkill();
+
+    setupDeleteSkill();
+
+}
+/* ==========================================================
+                EDIT SKILL
+========================================================== */
+
+function setupEditSkill(){
+    const editButtons = document.querySelectorAll(".edit-skill");
+            editButtons.forEach((button)=>{
+            button.onclick=()=>{
+            const id=button.dataset.id;
+            const skill=
+            allSkills.find(
+                item=>item.id===id
+            );
+            if(!skill) return;
+            skillName.value=
+            skill.name;
+            skillCategory.value=
+            skill.category;
+            skillPercent.value=
+            skill.percent;
+            skillIcon.value=
+            skill.icon;
+            editSkillId=id;
+            // Button Text
+            document
+            .getElementById("skill-btn")
+            .innerHTML=
+            `<i class="fa-solid fa-pen"></i> Update Skill`;
+            skillForm.scrollIntoView({
+                behavior:"smooth"
+            });
+
+        }
+    });
+
+}
+
+
+/* ==========================================================
+                DELETE SKILL
+========================================================== */
+
+function setupDeleteSkill(){
+
+    const deleteButtons=
+
+    document.querySelectorAll(
+
+        ".delete-skill"
+
+    );
+
+    deleteButtons.forEach((button)=>{
+
+        button.onclick=async()=>{
+
+            const ok=
+
+            confirm(
+
+                "Delete this skill?"
+
+            );
+
+            if(!ok) return;
+
+            try{
+
+                await db
+
+                .collection("skills")
+
+                .doc(button.dataset.id)
+
+                .delete();
+
+                showSkillToast(
+
+                    "Skill Deleted Successfully"
+
+                );
+
+            }
+
+            catch(error){
+
+                alert(error.message);
+
+            }
+
+        };
+
+    });
+
+}
+
+
+/* ==========================================================
+                TOAST
+========================================================== */
+
+function showSkillToast(message){
+
+    alert(message);
+
+}

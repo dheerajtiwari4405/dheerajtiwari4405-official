@@ -1,103 +1,183 @@
+/* ======= PORTFOLIO SKILLS========== */
+
+
+/* ========== DOM== */
+
+const portfolioSkillList = document.getElementById("portfolio-skill-list");
+
+
 /* ==========================================================
-                SKILLS ANIMATION
+                ARRAY
 ========================================================== */
 
-/*
-------------------------------------------------------------
-STEP 1
+let portfolioSkills = [];
 
-Saare progress bars select karo.
 
-HTML:
+/* ==========================================================
+            FIRESTORE REALTIME
+========================================================== */
 
-<div class="progress-bar" data-width="95"></div>
+db.collection("skills").onSnapshot((snapshot)=>{
+    portfolioSkills=[];
+    snapshot.forEach((doc)=>{
+        portfolioSkills.push({
+            id:doc.id,...doc.data()
+        });
+    });
+    renderPortfolioSkills();
+   
+});
+/* ==========================================================
+                RENDER PORTFOLIO SKILLS
+========================================================== */
 
-querySelectorAll() NodeList return karta hai.
-------------------------------------------------------------
-*/
+function renderPortfolioSkills(){
 
-const progressBars = document.querySelectorAll(".progress-bar");
+    // Empty Container
 
-/*
-------------------------------------------------------------
-STEP 2
+    portfolioSkillList.innerHTML = "";
 
-Animation function
+    // No Skill
 
-Ye function ek progress bar ko animate karega.
-------------------------------------------------------------
-*/
+    if(portfolioSkills.length === 0){
 
-function animateSkill(bar){
+        portfolioSkillList.innerHTML = `
 
-    /*
-    HTML ke data-width attribute ko read kar rahe hain.
+        <div class="empty-skill">
 
-    Example:
+            <i class="fa-solid fa-code"></i>
 
-    data-width="95"
+            <h2>
 
-    Output:
+                No Skills Available
 
-    95
-    */
+            </h2>
 
-    const targetWidth = bar.dataset.width;
+            <p>
 
-    /*
-    CSS width update.
+                Skills will appear here automatically.
 
-    Pehle width 0% thi.
+            </p>
 
-    Ab target width ho jayegi.
-    */
+        </div>
 
-    bar.style.width = targetWidth + "%";
+        `;
 
-}
+        return;
 
-/*
-------------------------------------------------------------
-STEP 3
+    }
 
-Intersection Observer
+    // Loop
 
-Animation tabhi chalegi jab section screen me aaye.
-------------------------------------------------------------
-*/
+    portfolioSkills.forEach((skill)=>{
 
-const skillObserver = new IntersectionObserver((entries)=>{
+        const card = document.createElement("div");
 
-    entries.forEach((entry)=>{
+        card.className = "portfolio-skill-card";
 
-        if(entry.isIntersecting){
+        card.innerHTML = `
 
-            animateSkill(entry.target);
+        <div class="skill-header">
 
-            /*
-            Animation sirf ek baar chalegi.
-            */
+            <h3>
 
-            skillObserver.unobserve(entry.target);
+                ${skill.name}
 
-        }
+            </h3>
+
+            <i class="${skill.icon}"></i>
+
+        </div>
+
+        <p class="skill-type">
+
+            ${skill.category}
+
+        </p>
+
+        <p class="skill-number">
+
+            ${skill.percent}%
+
+        </p>
+
+        <div class="progress">
+
+            <div
+
+                class="progress-bar"
+
+                style="width:${skill.percent}%">
+
+            </div>
+
+        </div>
+
+        `;
+
+        portfolioSkillList.appendChild(card);
 
     });
 
-},{
-    threshold:0.5
-});
+}
+/* ==========================================================
+                SKILL ANIMATION
+========================================================== */
 
-/*
-------------------------------------------------------------
-STEP 4
+function animateSkills() {
 
-Sabhi bars observe karo.
-------------------------------------------------------------
-*/
+    const cards = document.querySelectorAll(".portfolio-skill-card");
 
-progressBars.forEach((bar)=>{
+    cards.forEach((card, index) => {
 
-    skillObserver.observe(bar);
+        card.style.opacity = "0";
+        card.style.transform = "translateY(40px)";
 
-});
+        setTimeout(() => {
+
+            card.style.transition =
+                "all .6s ease";
+
+            card.style.opacity = "1";
+
+            card.style.transform =
+                "translateY(0)";
+
+        }, index * 150);
+
+    });
+
+}
+
+
+/* ==========================================================
+            PROGRESS BAR ANIMATION
+========================================================== */
+
+function animateProgress() {
+
+    const bars =
+        document.querySelectorAll(".progress-bar");
+
+    bars.forEach(bar => {
+
+        const width = bar.style.width;
+
+        bar.style.width = "0%";
+
+        setTimeout(() => {
+
+            bar.style.transition =
+                "width 1.5s ease";
+
+            bar.style.width = width;
+
+        }, 300);
+         portfolioSkillList.appendChild(card);
+    });
+
+    animateSkills();
+
+animateProgress();
+
+}
